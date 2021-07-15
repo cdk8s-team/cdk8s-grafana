@@ -4,18 +4,13 @@ cdk8s-grafana is a library that lets you easily define a Grafana service for
 your kubernetes cluster along with associated dashboards and datasources, using
 a high level API.
 
-Under the hood, the [Grafana
-Operator](https://operatorhub.io/operator/grafana-operator) is used to manage
-custom resources based on user-provided options. To achieve this, the resources
-needed for [Operator Lifecycle
-Manager](https://github.com/operator-framework/operator-lifecycle-manager/releases)
-v0.18.2 and Grafana Operator v3.10.2 come pre-bundled and will be included with
-the synthesized YAML's. The `bundleOperator: false` flag can be provided to omit
-the Grafana operator resources during synthesis, allowing an existing
-installation of the operator to be used (see
-https://operatorhub.io/operator/grafana-operator for more information).
-
 ### Usage
+
+To use this construct, the Operator Lifecycle Manager must be installed. See
+<https://github.com/operator-framework/operator-lifecycle-manager/releases>. The
+[Grafana Operator](https://operatorhub.io/operator/grafana-operator) will
+automatically be bundled into the synthesized kubernetes manifest - if you already
+have the operator in your cluster, use `bundleOperator: false` to disable this.
 
 The following will define a Grafana cluster with a dashboard and Prometheus
 datasource (note: metrics will be empty unless a corresponding Prometheus

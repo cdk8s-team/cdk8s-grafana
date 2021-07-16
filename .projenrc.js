@@ -6,6 +6,7 @@ const project = new ConstructLibraryCdk8s({
   defaultReleaseBranch: 'main',
   name: 'cdk8s-grafana',
   repositoryUrl: 'https://github.com/cdk8s-team/cdk8s-grafana.git',
+  constructsVersion: '3.3.48',
 
   // deps: [],                          /* Runtime dependencies of this module. */
   // description: undefined,            /* The description is just a string that helps people understand the purpose of the package. */

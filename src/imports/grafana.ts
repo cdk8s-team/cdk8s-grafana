@@ -46,6 +46,11 @@ export class Grafana extends ApiObject {
  */
 export interface GrafanaProps {
   /**
+   * @schema GrafanaDataSource#metadata
+   */
+  readonly metadata?: any;
+
+  /**
    * @schema Grafana#spec
    */
   readonly spec: GrafanaSpec;

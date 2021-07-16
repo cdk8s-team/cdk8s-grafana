@@ -59,7 +59,10 @@ export class GrafanaService extends Construct {
     const dashboardLabelSelectors: LabelSelector[] = [{ matchLabels: this.labels ?? { app: 'grafana' } }];
 
 
-    const grafana = new Grafana(this, id, {
+    new Grafana(this, id, {
+      metadata: {
+        labels: this.labels,
+      },
       spec: {
         baseImage: baseImage,
         ingress: {
@@ -89,10 +92,6 @@ export class GrafanaService extends Construct {
         dashboardLabelSelector: dashboardLabelSelectors,
       },
     });
-
-    for (const [key, value] of Object.entries(this.labels)) {
-      grafana.metadata.addLabel(key, value);
-    }
 
     this.dataSources = [];
     this.dashboards = [];
@@ -261,7 +260,10 @@ export class Dashboard extends Construct {
       links: [],
     } as any;
 
-    const dashboard = new GrafanaDashboard(this, id, {
+    new GrafanaDashboard(this, id, {
+      metadata: {
+        labels: props.labels,
+      },
       spec: {
         customFolderName: props.folder,
         datasources: [{
@@ -276,9 +278,5 @@ export class Dashboard extends Construct {
         name: id,
       },
     });
-
-    for (const [key, value] of Object.entries(props.labels ?? {})) {
-      dashboard.metadata.addLabel(key, value);
-    }
   }
 }

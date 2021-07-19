@@ -1,5 +1,6 @@
+import { Duration } from 'cdk8s';
 import { Construct } from 'constructs';
-import { Grafana as GrafanaRaw } from './imports/grafana';
+import { Grafana as RawGrafana } from './imports/grafana';
 import { GrafanaDashboard } from './imports/grafana-dashboard';
 import { GrafanaDataSource } from './imports/grafana-datasource';
 import { LabelSelector } from './imports/k8s';
@@ -65,7 +66,7 @@ export class Grafana extends Construct {
     this.labels = props.labels ?? { app: 'grafana' };
     const dashboardLabelSelectors: LabelSelector[] = [{ matchLabels: this.labels ?? { app: 'grafana' } }];
 
-    new GrafanaRaw(this, id, {
+    new RawGrafana(this, id, {
       metadata: {
         labels: this.labels,
       },
@@ -108,7 +109,7 @@ export class Grafana extends Construct {
   }
 
   /**
-   * Creates a data source. By default, labels are automatically added so that
+   * Adds a data source. By default, labels are automatically added so that
    * the data source is detected by Grafana.
    */
   public addDataSource(id: string, props: DataSourceProps): DataSource {
@@ -124,12 +125,15 @@ export class Grafana extends Construct {
   /**
    * Creates a dashboard associated with a particular data source.
    */
-  public addDashboard(id: string, dataSource: DataSource, props: DashboardProps): Dashboard {
+  public addDashboard(id: string, props: DashboardProps): Dashboard {
+    // default values for labels and data sources
     const labels = {
       ...this.labels,
       ...props.labels,
     };
-    const dashboard = new Dashboard(this, id, dataSource, { labels, ...props });
+    const dataSources = this.dataSources.length > 0 ? [this.dataSources[0]] : [];
+
+    const dashboard = new Dashboard(this, id, { labels, dataSources, ...props });
     this.dashboards.push(dashboard);
     return dashboard;
   }
@@ -221,6 +225,35 @@ export interface DashboardProps {
   readonly folder?: string;
 
   /**
+   * Datasources to connect to the dashboard.
+   * @default - the default data source is added (if it exists)
+   */
+  readonly dataSources?: DataSource[];
+
+  /**
+   * Auto-refresh interval.
+   * @default - 5 seconds
+   */
+  readonly refreshRate?: Duration;
+
+  /**
+   * Time range for the dashboard, e.g. last 6 hours, last 7 days, etc.
+   * @default - '6h'
+   */
+  readonly timeRange?: Duration;
+
+  /**
+   * Specify panels in the dashboard.
+   * @see https://grafana.com/docs/grafana/latest/dashboards/json-model/#panels
+   */
+  readonly panels?: any[];
+
+  /**
+   * Specify plugins required by the dashboard.
+   */
+  readonly plugins?: GrafanaPlugin[];
+
+  /**
    * Labels to apply to the kubernetes resource.
    * @default - labels re-applied from `GrafanaService`
    */
@@ -238,8 +271,17 @@ export interface DashboardProps {
  * @see https://grafana.com/docs/grafana/latest/http_api/dashboard/
  */
 export class Dashboard extends Construct {
-  constructor(scope: Construct, id: string, dataSource: DataSource, props: DashboardProps) {
+  private readonly plugins: GrafanaPlugin[];
+  private readonly panels: any[];
+  constructor(scope: Construct, id: string, props: DashboardProps) {
     super(scope, id);
+
+    const refreshRate = props.refreshRate ?? Duration.seconds(5);
+    const timeRange = props.timeRange ?? Duration.hours(6);
+    const dataSources = props.dataSources?.map((ds) => ({
+      datasourceName: ds.name,
+      inputName: ds.variable,
+    }));
 
     const defaults = {
       id: null,
@@ -251,7 +293,7 @@ export class Dashboard extends Construct {
       graphTooltip: 1,
       panels: [],
       time: {
-        from: 'now-6h',
+        from: `now-${timeRange.toSeconds}s`,
         to: 'now',
       },
       timepicker: {
@@ -264,11 +306,14 @@ export class Dashboard extends Construct {
       annotations: {
         list: [],
       },
-      refresh: '5s',
+      refresh: `${refreshRate.toSeconds}s`,
       schemaVersion: 17,
       version: 0,
       links: [],
     } as any;
+
+    this.plugins = [];
+    this.panels = [];
 
     new GrafanaDashboard(this, id, {
       metadata: {
@@ -276,10 +321,9 @@ export class Dashboard extends Construct {
       },
       spec: {
         customFolderName: props.folder,
-        datasources: [{
-          datasourceName: dataSource.name,
-          inputName: dataSource.variable,
-        }],
+        datasources: dataSources,
+        plugins: this.plugins,
+        // dashboard contents are expected as a raw JSON string
         json: JSON.stringify({
           ...defaults,
           ...props.jsonModel,
@@ -288,5 +332,43 @@ export class Dashboard extends Construct {
         name: id,
       },
     });
+
+    if (props.plugins) {
+      this.addPlugins(...props.plugins);
+    }
+
+    if (props.panels) {
+      this.addPanels(...props.panels);
+    }
   }
+
+  /**
+   * Adds one or more plugins.
+   */
+  public addPlugins(...plugins: GrafanaPlugin[]) {
+    for (const plugin of plugins) {
+      this.plugins.push(plugin);
+    }
+  }
+
+  /**
+   * Adds one or more panels.
+   */
+  public addPanels(...panels: any[]) {
+    for (const panel of panels) {
+      this.panels.push(panel);
+    }
+  }
+}
+
+export interface GrafanaPlugin {
+  /**
+   * Name of the plugin, e.g. "grafana-piechart-panel"
+   */
+  readonly name: string;
+
+  /**
+   * Version of the plugin, e.g. "1.3.6"
+   */
+  readonly version: string;
 }

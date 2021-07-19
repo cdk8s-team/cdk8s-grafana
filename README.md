@@ -50,10 +50,12 @@ const dashboard = grafana.addDashboard('my-dashboard', {
       "content": "# title"
     },
   ],
-  plugins: {
-    name: 'grafana-piechart-panel',
-    version: '1.3.6',
-  },
+  plugins: [
+    {
+      name: 'grafana-piechart-panel',
+      version: '1.3.6',
+    }
+  ],
 });
 ```
 

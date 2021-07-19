@@ -1,10 +1,10 @@
 import { Construct } from 'constructs';
-import { Grafana } from './imports/grafana';
+import { Grafana as GrafanaRaw } from './imports/grafana';
 import { GrafanaDashboard } from './imports/grafana-dashboard';
 import { GrafanaDataSource } from './imports/grafana-datasource';
 import { LabelSelector } from './imports/k8s';
 
-export interface GrafanaServiceProps {
+export interface GrafanaProps {
   /**
    * Specify a custom image for Grafana.
    * @default "public.ecr.aws/ubuntu/grafana:latest"
@@ -36,18 +36,25 @@ export interface GrafanaServiceProps {
   readonly requireLogin?: boolean;
 
   /**
+   * Default data source - the default datasource added to any newly created
+   * dashboards.
+   * @default undefined
+   */
+  readonly defaultDataSource?: DataSourceProps;
+
+  /**
    * Labels to apply to all Grafana resources.
    * @default - { app: "grafana" }
    */
   readonly labels?: { [name: string]: string };
 }
 
-export class GrafanaService extends Construct {
+export class Grafana extends Construct {
   public readonly dataSources: DataSource[];
   public readonly dashboards: Dashboard[];
   public readonly labels: { [name: string]: string };
 
-  constructor(scope: Construct, id: string, props: GrafanaServiceProps = {}) {
+  constructor(scope: Construct, id: string, props: GrafanaProps = {}) {
     super(scope, id);
 
     const baseImage = props.image ?? 'public.ecr.aws/ubuntu/grafana:latest';
@@ -58,8 +65,7 @@ export class GrafanaService extends Construct {
     this.labels = props.labels ?? { app: 'grafana' };
     const dashboardLabelSelectors: LabelSelector[] = [{ matchLabels: this.labels ?? { app: 'grafana' } }];
 
-
-    new Grafana(this, id, {
+    new GrafanaRaw(this, id, {
       metadata: {
         labels: this.labels,
       },
@@ -95,10 +101,14 @@ export class GrafanaService extends Construct {
 
     this.dataSources = [];
     this.dashboards = [];
+
+    if (props.defaultDataSource) {
+      this.addDataSource('default-datasource', props.defaultDataSource);
+    }
   }
 
   /**
-   * Creates a data source. By default, labels are automatically applied so that
+   * Creates a data source. By default, labels are automatically added so that
    * the data source is detected by Grafana.
    */
   public addDataSource(id: string, props: DataSourceProps): DataSource {

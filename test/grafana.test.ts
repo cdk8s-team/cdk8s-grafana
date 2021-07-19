@@ -1,5 +1,5 @@
 import { Chart, Testing } from 'cdk8s';
-import { GrafanaService } from '../src';
+import { Grafana } from '../src';
 
 describe('a grafana instance', () => {
   test('defaults', () => {
@@ -8,7 +8,7 @@ describe('a grafana instance', () => {
     const chart = new Chart(app, 'test');
 
     // WHEN
-    new GrafanaService(chart, 'my-grafana');
+    new Grafana(chart, 'my-grafana');
 
     // THEN
     expect(Testing.synth(chart)).toMatchSnapshot();

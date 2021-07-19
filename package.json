@@ -39,7 +39,7 @@
     "@typescript-eslint/parser": "^4.28.3",
     "cdk8s": "1.0.0-beta.10",
     "cdk8s-plus-17": "1.0.0-beta.10",
-    "constructs": "3.2.34",
+    "constructs": "3.3.48",
     "eslint": "^7.30.0",
     "eslint-import-resolver-node": "^0.3.4",
     "eslint-import-resolver-typescript": "^2.4.0",
@@ -60,7 +60,7 @@
   "peerDependencies": {
     "cdk8s": "^1.0.0-beta.10",
     "cdk8s-plus-17": "^1.0.0-beta.10",
-    "constructs": "^3.2.34"
+    "constructs": "^3.3.48"
   },
   "bundledDependencies": [],
   "keywords": [

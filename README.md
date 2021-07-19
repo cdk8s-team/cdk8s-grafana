@@ -36,7 +36,6 @@ const dashboard = grafana.addDashboard('my-dashboard', {
   title: 'My Dashboard',
   refreshRate: Duration.seconds(10),
   timeRange: Duration.hours(6), // show metrics from now-6h to now
-  hideControls: true,
   panels: [
     {
       "type": "text",

@@ -120,6 +120,8 @@ Name of datasource variable used to pass information to dashboards.
 
 ### Grafana <a name="cdk8s-grafana.Grafana"></a>
 
+A Grafana cluster.
+
 #### Initializer <a name="cdk8s-grafana.Grafana.Initializer"></a>
 
 ```typescript
@@ -185,25 +187,6 @@ public addDataSource(id: string, props: DataSourceProps)
 ---
 
 
-#### Properties <a name="Properties"></a>
-
-##### `dashboards`<sup>Required</sup> <a name="cdk8s-grafana.Grafana.property.dashboards"></a>
-
-- *Type:* [`cdk8s-grafana.Dashboard`](#cdk8s-grafana.Dashboard)[]
-
----
-
-##### `dataSources`<sup>Required</sup> <a name="cdk8s-grafana.Grafana.property.dataSources"></a>
-
-- *Type:* [`cdk8s-grafana.DataSource`](#cdk8s-grafana.DataSource)[]
-
----
-
-##### `labels`<sup>Required</sup> <a name="cdk8s-grafana.Grafana.property.labels"></a>
-
-- *Type:* {[ key: string ]: `string`}
-
----
 
 
 ## Structs <a name="Structs"></a>
@@ -416,9 +399,9 @@ Default admin username.
 ##### `defaultDataSource`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.defaultDataSource"></a>
 
 - *Type:* [`cdk8s-grafana.DataSourceProps`](#cdk8s-grafana.DataSourceProps)
-- *Default:* undefined
+- *Default:* no data source added
 
-Default data source - the default datasource added to any newly created dashboards.
+Default data source - the default data source added to any newly created dashboards.
 
 ---
 

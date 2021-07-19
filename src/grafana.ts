@@ -1,4 +1,4 @@
-import { Duration } from 'cdk8s';
+import { Duration, Lazy } from 'cdk8s';
 import { Construct } from 'constructs';
 import { Grafana as RawGrafana } from './imports/grafana';
 import { GrafanaDashboard } from './imports/grafana-dashboard';
@@ -37,9 +37,9 @@ export interface GrafanaProps {
   readonly requireLogin?: boolean;
 
   /**
-   * Default data source - the default datasource added to any newly created
+   * Default data source - the default data source added to any newly created
    * dashboards.
-   * @default undefined
+   * @default - no data source added
    */
   readonly defaultDataSource?: DataSourceProps;
 
@@ -50,10 +50,13 @@ export interface GrafanaProps {
   readonly labels?: { [name: string]: string };
 }
 
+/**
+ * A Grafana cluster.
+ */
 export class Grafana extends Construct {
-  public readonly dataSources: DataSource[];
-  public readonly dashboards: Dashboard[];
-  public readonly labels: { [name: string]: string };
+  private readonly dataSources: DataSource[];
+  private readonly dashboards: Dashboard[];
+  private readonly labels: { [name: string]: string };
 
   constructor(scope: Construct, id: string, props: GrafanaProps = {}) {
     super(scope, id);
@@ -126,12 +129,12 @@ export class Grafana extends Construct {
    * Creates a dashboard associated with a particular data source.
    */
   public addDashboard(id: string, props: DashboardProps): Dashboard {
-    // default values for labels and data sources
     const labels = {
       ...this.labels,
       ...props.labels,
     };
-    const dataSources = this.dataSources.length > 0 ? [this.dataSources[0]] : [];
+    // connect with first datasource by default (unless overridden by props)
+    const dataSources = this.dataSources.slice(0, 1);
 
     const dashboard = new Dashboard(this, id, { labels, dataSources, ...props });
     this.dashboards.push(dashboard);
@@ -283,7 +286,11 @@ export class Dashboard extends Construct {
       inputName: ds.variable,
     }));
 
+    this.plugins = [];
+    this.panels = [];
+
     const defaults = {
+      title: props.title,
       id: null,
       tags: [],
       style: 'dark',
@@ -291,7 +298,7 @@ export class Dashboard extends Construct {
       editable: true,
       hideControls: false,
       graphTooltip: 1,
-      panels: [],
+      panels: this.panels,
       time: {
         from: `now-${timeRange.toSeconds}s`,
         to: 'now',
@@ -312,9 +319,6 @@ export class Dashboard extends Construct {
       links: [],
     } as any;
 
-    this.plugins = [];
-    this.panels = [];
-
     new GrafanaDashboard(this, id, {
       metadata: {
         labels: props.labels,
@@ -323,12 +327,17 @@ export class Dashboard extends Construct {
         customFolderName: props.folder,
         datasources: dataSources,
         plugins: this.plugins,
+
         // dashboard contents are expected as a raw JSON string
-        json: JSON.stringify({
-          ...defaults,
-          ...props.jsonModel,
-          title: props.title,
-        }, null, 2),
+        // needs to be generated lazily since this.panels may change
+        json: Lazy.any({
+          produce: () => {
+            return JSON.stringify({
+              ...defaults,
+              ...props.jsonModel,
+            }, null, 2);
+          },
+        }),
         name: id,
       },
     });

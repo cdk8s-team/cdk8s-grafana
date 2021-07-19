@@ -1,5 +1,217 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`a grafana instance adding panels via constructor 1`] = `
+Array [
+  Object {
+    "apiVersion": "integreatly.org/v1alpha1",
+    "kind": "Grafana",
+    "metadata": Object {
+      "labels": Object {
+        "app": "grafana",
+      },
+      "name": "test-my-grafana-c87951cf",
+    },
+    "spec": Object {
+      "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
+      "client": Object {
+        "preferService": true,
+      },
+      "config": Object {
+        "auth.anonymous": Object {
+          "enabled": true,
+        },
+        "log": Object {
+          "level": "debug",
+          "mode": "console",
+        },
+        "security": Object {
+          "admin_password": "secret",
+          "admin_user": "root",
+        },
+      },
+      "dashboardLabelSelector": Array [
+        Object {
+          "matchLabels": Object {
+            "app": "grafana",
+          },
+        },
+      ],
+      "deployment": Object {
+        "labels": Object {
+          "app": "grafana",
+        },
+      },
+      "ingress": Object {
+        "enabled": true,
+      },
+    },
+  },
+  Object {
+    "apiVersion": "integreatly.org/v1alpha1",
+    "kind": "GrafanaDashboard",
+    "metadata": Object {
+      "labels": Object {
+        "app": "grafana",
+      },
+      "name": "test-my-grafana-my-dashboard-c85bcbbe",
+    },
+    "spec": Object {
+      "datasources": Array [],
+      "json": "{
+  \\"title\\": \\"My Dashboard\\",
+  \\"id\\": null,
+  \\"tags\\": [],
+  \\"style\\": \\"dark\\",
+  \\"timezone\\": \\"browser\\",
+  \\"editable\\": true,
+  \\"hideControls\\": false,
+  \\"graphTooltip\\": 1,
+  \\"panels\\": [
+    {
+      \\"type\\": \\"text\\",
+      \\"title\\": \\"Panel Title\\",
+      \\"gridPos\\": {
+        \\"x\\": 0,
+        \\"y\\": 0,
+        \\"w\\": 12,
+        \\"h\\": 9
+      },
+      \\"mode\\": \\"markdown\\",
+      \\"content\\": \\"# title\\"
+    }
+  ],
+  \\"time\\": {
+    \\"from\\": \\"now-toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+    \\"to\\": \\"now\\"
+  },
+  \\"timepicker\\": {
+    \\"time_options\\": [],
+    \\"refresh_intervals\\": []
+  },
+  \\"templating\\": {
+    \\"list\\": []
+  },
+  \\"annotations\\": {
+    \\"list\\": []
+  },
+  \\"refresh\\": \\"toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+  \\"schemaVersion\\": 17,
+  \\"version\\": 0,
+  \\"links\\": []
+}",
+      "name": "my-dashboard",
+      "plugins": Array [],
+    },
+  },
+]
+`;
+
+exports[`a grafana instance adding panels via method 1`] = `
+Array [
+  Object {
+    "apiVersion": "integreatly.org/v1alpha1",
+    "kind": "Grafana",
+    "metadata": Object {
+      "labels": Object {
+        "app": "grafana",
+      },
+      "name": "test-my-grafana-c87951cf",
+    },
+    "spec": Object {
+      "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
+      "client": Object {
+        "preferService": true,
+      },
+      "config": Object {
+        "auth.anonymous": Object {
+          "enabled": true,
+        },
+        "log": Object {
+          "level": "debug",
+          "mode": "console",
+        },
+        "security": Object {
+          "admin_password": "secret",
+          "admin_user": "root",
+        },
+      },
+      "dashboardLabelSelector": Array [
+        Object {
+          "matchLabels": Object {
+            "app": "grafana",
+          },
+        },
+      ],
+      "deployment": Object {
+        "labels": Object {
+          "app": "grafana",
+        },
+      },
+      "ingress": Object {
+        "enabled": true,
+      },
+    },
+  },
+  Object {
+    "apiVersion": "integreatly.org/v1alpha1",
+    "kind": "GrafanaDashboard",
+    "metadata": Object {
+      "labels": Object {
+        "app": "grafana",
+      },
+      "name": "test-my-grafana-my-dashboard-c85bcbbe",
+    },
+    "spec": Object {
+      "datasources": Array [],
+      "json": "{
+  \\"title\\": \\"My Dashboard\\",
+  \\"id\\": null,
+  \\"tags\\": [],
+  \\"style\\": \\"dark\\",
+  \\"timezone\\": \\"browser\\",
+  \\"editable\\": true,
+  \\"hideControls\\": false,
+  \\"graphTooltip\\": 1,
+  \\"panels\\": [
+    {
+      \\"type\\": \\"text\\",
+      \\"title\\": \\"Panel Title\\",
+      \\"gridPos\\": {
+        \\"x\\": 0,
+        \\"y\\": 0,
+        \\"w\\": 12,
+        \\"h\\": 9
+      },
+      \\"mode\\": \\"markdown\\",
+      \\"content\\": \\"# title\\"
+    }
+  ],
+  \\"time\\": {
+    \\"from\\": \\"now-toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+    \\"to\\": \\"now\\"
+  },
+  \\"timepicker\\": {
+    \\"time_options\\": [],
+    \\"refresh_intervals\\": []
+  },
+  \\"templating\\": {
+    \\"list\\": []
+  },
+  \\"annotations\\": {
+    \\"list\\": []
+  },
+  \\"refresh\\": \\"toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+  \\"schemaVersion\\": 17,
+  \\"version\\": 0,
+  \\"links\\": []
+}",
+      "name": "my-dashboard",
+      "plugins": Array [],
+    },
+  },
+]
+`;
+
 exports[`a grafana instance adding plugins via constructor 1`] = `
 Array [
   Object {
@@ -58,6 +270,7 @@ Array [
     "spec": Object {
       "datasources": Array [],
       "json": "{
+  \\"title\\": \\"My Dashboard\\",
   \\"id\\": null,
   \\"tags\\": [],
   \\"style\\": \\"dark\\",
@@ -83,8 +296,7 @@ Array [
   \\"refresh\\": \\"toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
   \\"schemaVersion\\": 17,
   \\"version\\": 0,
-  \\"links\\": [],
-  \\"title\\": \\"My Dashboard\\"
+  \\"links\\": []
 }",
       "name": "my-dashboard",
       "plugins": Array [
@@ -160,6 +372,7 @@ Array [
     "spec": Object {
       "datasources": Array [],
       "json": "{
+  \\"title\\": \\"My Dashboard\\",
   \\"id\\": null,
   \\"tags\\": [],
   \\"style\\": \\"dark\\",
@@ -185,8 +398,7 @@ Array [
   \\"refresh\\": \\"toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
   \\"schemaVersion\\": 17,
   \\"version\\": 0,
-  \\"links\\": [],
-  \\"title\\": \\"My Dashboard\\"
+  \\"links\\": []
 }",
       "name": "my-dashboard",
       "plugins": Array [
@@ -248,6 +460,175 @@ Array [
       "ingress": Object {
         "enabled": true,
       },
+    },
+  },
+]
+`;
+
+exports[`a grafana instance with customized auth 1`] = `
+Array [
+  Object {
+    "apiVersion": "integreatly.org/v1alpha1",
+    "kind": "Grafana",
+    "metadata": Object {
+      "labels": Object {
+        "app": "grafana",
+      },
+      "name": "test-my-grafana-c87951cf",
+    },
+    "spec": Object {
+      "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
+      "client": Object {
+        "preferService": true,
+      },
+      "config": Object {
+        "auth.anonymous": Object {
+          "enabled": false,
+        },
+        "log": Object {
+          "level": "debug",
+          "mode": "console",
+        },
+        "security": Object {
+          "admin_password": "this-is-a-bad-password",
+          "admin_user": "admin",
+        },
+      },
+      "dashboardLabelSelector": Array [
+        Object {
+          "matchLabels": Object {
+            "app": "grafana",
+          },
+        },
+      ],
+      "deployment": Object {
+        "labels": Object {
+          "app": "grafana",
+        },
+      },
+      "ingress": Object {
+        "enabled": true,
+      },
+    },
+  },
+]
+`;
+
+exports[`a grafana instance with data source and customized dashboard 1`] = `
+Array [
+  Object {
+    "apiVersion": "integreatly.org/v1alpha1",
+    "kind": "Grafana",
+    "metadata": Object {
+      "labels": Object {
+        "app": "grafana",
+      },
+      "name": "test-my-grafana-c87951cf",
+    },
+    "spec": Object {
+      "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
+      "client": Object {
+        "preferService": true,
+      },
+      "config": Object {
+        "auth.anonymous": Object {
+          "enabled": true,
+        },
+        "log": Object {
+          "level": "debug",
+          "mode": "console",
+        },
+        "security": Object {
+          "admin_password": "secret",
+          "admin_user": "root",
+        },
+      },
+      "dashboardLabelSelector": Array [
+        Object {
+          "matchLabels": Object {
+            "app": "grafana",
+          },
+        },
+      ],
+      "deployment": Object {
+        "labels": Object {
+          "app": "grafana",
+        },
+      },
+      "ingress": Object {
+        "enabled": true,
+      },
+    },
+  },
+  Object {
+    "apiVersion": "integreatly.org/v1alpha1",
+    "kind": "GrafanaDataSource",
+    "metadata": Object {
+      "labels": Object {
+        "app": "grafana",
+      },
+      "name": "test-my-grafana-datasource-c81e489f",
+    },
+    "spec": Object {
+      "datasources": Array [
+        Object {
+          "access": "proxy",
+          "name": "Prometheus",
+          "type": "prometheus",
+          "url": "http://prometheus-service:9090",
+        },
+      ],
+      "name": "Prometheus",
+    },
+  },
+  Object {
+    "apiVersion": "integreatly.org/v1alpha1",
+    "kind": "GrafanaDashboard",
+    "metadata": Object {
+      "labels": Object {
+        "app": "grafana",
+      },
+      "name": "test-my-grafana-my-dashboard-c85bcbbe",
+    },
+    "spec": Object {
+      "customFolderName": "special-dashboards",
+      "datasources": Array [
+        Object {
+          "datasourceName": "Prometheus",
+          "inputName": "DS_PROMETHEUS",
+        },
+      ],
+      "json": "{
+  \\"title\\": \\"My Dashboard\\",
+  \\"id\\": null,
+  \\"tags\\": [],
+  \\"style\\": \\"dark\\",
+  \\"timezone\\": \\"browser\\",
+  \\"editable\\": true,
+  \\"hideControls\\": true,
+  \\"graphTooltip\\": 1,
+  \\"panels\\": [],
+  \\"time\\": {
+    \\"from\\": \\"now-toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+    \\"to\\": \\"now\\"
+  },
+  \\"timepicker\\": {
+    \\"time_options\\": [],
+    \\"refresh_intervals\\": []
+  },
+  \\"templating\\": {
+    \\"list\\": []
+  },
+  \\"annotations\\": {
+    \\"list\\": []
+  },
+  \\"refresh\\": \\"toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+  \\"schemaVersion\\": 17,
+  \\"version\\": 0,
+  \\"links\\": []
+}",
+      "name": "my-dashboard",
+      "plugins": Array [],
     },
   },
 ]

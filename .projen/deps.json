@@ -29,7 +29,7 @@
     },
     {
       "name": "constructs",
-      "version": "3.2.34",
+      "version": "3.3.48",
       "type": "build"
     },
     {
@@ -111,7 +111,7 @@
     },
     {
       "name": "constructs",
-      "version": "^3.2.34",
+      "version": "^3.3.48",
       "type": "peer"
     }
   ],

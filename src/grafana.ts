@@ -37,8 +37,7 @@ export interface GrafanaProps {
   readonly requireLogin?: boolean;
 
   /**
-   * Default data source - the default data source added to any newly created
-   * dashboards.
+   * Default data source - equivalent to calling `addDataSource()`.
    * @default - no data source added
    */
   readonly defaultDataSource?: DataSourceProps;
@@ -51,7 +50,7 @@ export interface GrafanaProps {
 }
 
 /**
- * A Grafana cluster.
+ * A Grafana instance.
  */
 export class Grafana extends Construct {
   private readonly dataSources: DataSource[];
@@ -61,12 +60,15 @@ export class Grafana extends Construct {
   constructor(scope: Construct, id: string, props: GrafanaProps = {}) {
     super(scope, id);
 
+    this.labels = props.labels ?? { app: 'grafana' };
+    this.dataSources = [];
+    this.dashboards = [];
+
     const baseImage = props.image ?? 'public.ecr.aws/ubuntu/grafana:latest';
     const ingress = props.ingress ?? true;
     const adminUser = props.adminUser ?? 'root';
     const adminPassword = props.adminPassword ?? 'secret';
     const requireLogin = props.requireLogin ?? false;
-    this.labels = props.labels ?? { app: 'grafana' };
     const dashboardLabelSelectors: LabelSelector[] = [{ matchLabels: this.labels ?? { app: 'grafana' } }];
 
     new RawGrafana(this, id, {
@@ -86,7 +88,7 @@ export class Grafana extends Construct {
         config: {
           'log': {
             mode: 'console',
-            level: 'debug',
+            level: 'info',
           },
           'auth.anonymous': {
             enabled: !requireLogin,
@@ -102,9 +104,6 @@ export class Grafana extends Construct {
         dashboardLabelSelector: dashboardLabelSelectors,
       },
     });
-
-    this.dataSources = [];
-    this.dashboards = [];
 
     if (props.defaultDataSource) {
       this.addDataSource('default-datasource', props.defaultDataSource);
@@ -126,20 +125,35 @@ export class Grafana extends Construct {
   }
 
   /**
-   * Creates a dashboard associated with a particular data source.
+   * Creates a dashboard associated with a particular data source. By default,
+   * labels are automatically added so that the data source is detected by
+   * Grafana.
    */
   public addDashboard(id: string, props: DashboardProps): Dashboard {
     const labels = {
       ...this.labels,
       ...props.labels,
     };
-    // connect with first datasource by default (unless overridden by props)
-    const dataSources = this.dataSources.slice(0, 1);
-
-    const dashboard = new Dashboard(this, id, { labels, dataSources, ...props });
+    const dashboard = new Dashboard(this, id, { labels, ...props });
     this.dashboards.push(dashboard);
     return dashboard;
   }
+}
+
+/**
+ * Mode for accessing a data source.
+ * @see https://grafana.com/docs/grafana/latest/administration/provisioning/#example-data-source-config-file
+ */
+export enum AccessType {
+  /**
+   * Access via proxy.
+   */
+  PROXY = 'proxy',
+
+  /**
+   * Access directly (via server or browser in UI).
+   */
+  DIRECT = 'direct',
 }
 
 export interface DataSourceProps {
@@ -150,28 +164,34 @@ export interface DataSourceProps {
 
   /**
    * Description of the data source.
-   * @default undefined
+   * @default - no description
    */
   readonly description?: string;
 
   /**
    * Type of the data source.
    */
-  readonly type?: string;
+  readonly type: string;
 
   /**
    * URL of the data source.
+   * @default - no url
    */
   readonly url?: string;
 
   /**
    * Access type of the data source.
    */
-  readonly access?: string;
+  readonly access: AccessType;
 
   /**
    * Labels to apply to the kubernetes resource.
-   * @default - labels re-applied from `GrafanaService`
+   *
+   * When adding a data source to a Grafana instance through the addDatasource
+   * method on Grafana, labels provided to Grafana will be automatically
+   * applied. Otherwise, labels must be added manually.
+   *
+   * @default - no labels
    */
   readonly labels?: { [name: string]: string };
 }
@@ -179,6 +199,7 @@ export interface DataSourceProps {
 /**
  * A Grafana data source.
  * @see https://grafana.com/docs/grafana/latest/http_api/data_source/
+ * @see https://grafana.com/docs/grafana/latest/administration/provisioning/#example-data-source-config-file
  */
 export class DataSource extends Construct {
   /**
@@ -186,14 +207,10 @@ export class DataSource extends Construct {
    */
   public readonly name: string;
 
-  /**
-   * Name of datasource variable used to pass information to dashboards.
-   * @see https://github.com/grafana-operator/grafana-operator/blob/master/documentation/dashboards.md#datasource-inputs
-   */
-  public readonly variable: string;
-
   constructor(scope: Construct, id: string, props: DataSourceProps) {
     super(scope, id);
+
+    this.name = props.name;
 
     new GrafanaDataSource(this, id, {
       metadata: {
@@ -209,9 +226,6 @@ export class DataSource extends Construct {
         }],
       },
     });
-
-    this.name = props.name;
-    this.variable = `DS_${props.name.toLocaleUpperCase()}`;
   }
 }
 
@@ -228,10 +242,14 @@ export interface DashboardProps {
   readonly folder?: string;
 
   /**
-   * Datasources to connect to the dashboard.
-   * @default - the default data source is added (if it exists)
+   * Specify a mapping from data source variables to data source names.
+   * This is only needed you are importing an existing dashboard's JSON
+   * and it specifies variables within an "__inputs" field.
+   *
+   * @example { DS_PROMETHEUS: "my-prometheus-ds" }
+   * @default - no data source variables
    */
-  readonly dataSources?: DataSource[];
+  readonly dataSourceVariables?: { [name: string]: string };
 
   /**
    * Auto-refresh interval.
@@ -246,19 +264,18 @@ export interface DashboardProps {
   readonly timeRange?: Duration;
 
   /**
-   * Specify panels in the dashboard.
-   * @see https://grafana.com/docs/grafana/latest/dashboards/json-model/#panels
-   */
-  readonly panels?: any[];
-
-  /**
    * Specify plugins required by the dashboard.
    */
   readonly plugins?: GrafanaPlugin[];
 
   /**
    * Labels to apply to the kubernetes resource.
-   * @default - labels re-applied from `GrafanaService`
+   *
+   * When adding a dashboard to a Grafana instance through the addDashboard
+   * method on Grafana, labels provided to Grafana will be automatically
+   * applied. Otherwise, labels must be added manually.
+   *
+   * @default - no labels
    */
   readonly labels?: { [name: string]: string };
 
@@ -280,16 +297,15 @@ export class Dashboard extends Construct {
   constructor(scope: Construct, id: string, props: DashboardProps) {
     super(scope, id);
 
-    const refreshRate = props.refreshRate ?? Duration.seconds(5);
-    const timeRange = props.timeRange ?? Duration.hours(6);
-    const dataSources = props.dataSources?.map((ds) => ({
-      datasourceName: ds.name,
-      inputName: ds.variable,
-    }));
-
     this.plugins = [];
     this.panels = [];
     this.panelId = 0;
+
+    const refreshRate = props.refreshRate ?? Duration.seconds(5);
+    const timeRange = props.timeRange ?? Duration.hours(6);
+    const dataSources = Object.entries(props.dataSourceVariables ?? {}).map(
+      ([variable, name]) => ({ datasourceName: name, inputName: variable }),
+    );
 
     const defaults = {
       title: props.title,
@@ -346,10 +362,6 @@ export class Dashboard extends Construct {
 
     if (props.plugins) {
       this.addPlugins(...props.plugins);
-    }
-
-    if (props.panels) {
-      this.addPanels(...props.panels);
     }
   }
 

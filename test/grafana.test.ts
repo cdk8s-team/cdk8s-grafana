@@ -1,5 +1,5 @@
 import { Chart, Duration, Testing } from 'cdk8s';
-import { Grafana } from '../src';
+import { AccessType, Grafana } from '../src';
 
 const PLUGINS = [
   {
@@ -70,7 +70,7 @@ describe('a grafana instance', () => {
       defaultDataSource: {
         name: 'Prometheus',
         type: 'prometheus',
-        access: 'proxy',
+        access: AccessType.PROXY,
         url: 'http://prometheus-service:9090',
       },
     });
@@ -86,6 +86,47 @@ describe('a grafana instance', () => {
 
     // THEN
     expect(Testing.synth(chart)).toMatchSnapshot();
+  });
+
+  test('with a dashboard expecting a data source variable', () => {
+    // GIVEN
+    const app = Testing.app();
+    const chart = new Chart(app, 'test');
+
+    // WHEN
+    const grafana = new Grafana(chart, 'my-grafana');
+    const prometheus = grafana.addDataSource('prometheus', {
+      name: 'Prometheus',
+      type: 'prometheus',
+      access: AccessType.PROXY,
+      url: 'http://prometheus-service:9090',
+    });
+    grafana.addDashboard('my-dashboard', {
+      title: 'My Dashboard',
+      folder: 'special-dashboards',
+      refreshRate: Duration.seconds(10),
+      timeRange: Duration.hours(6),
+      jsonModel: {
+        __inputs: [
+          {
+            name: 'DS_PROMETHEUS',
+            label: 'Prometheus',
+            description: '',
+            type: 'datasource',
+            pluginId: 'prometheus',
+            pluginName: 'Prometheus',
+          },
+        ],
+      },
+      dataSourceVariables: {
+        DS_PROMETHEUS: prometheus.name,
+      },
+    });
+
+    // THEN
+    const manifest = Testing.synth(chart);
+    expect(manifest).toMatchSnapshot();
+    expect(manifest[2].spec.datasources.length).toEqual(1);
   });
 
   test('adding plugins via constructor', () => {
@@ -120,24 +161,6 @@ describe('a grafana instance', () => {
     const manifest = Testing.synth(chart);
     expect(manifest).toMatchSnapshot();
     expect(manifest[1].spec.plugins).toMatchObject(PLUGINS);
-  });
-
-  test('adding panels via constructor', () => {
-    // GIVEN
-    const app = Testing.app();
-    const chart = new Chart(app, 'test');
-
-    // WHEN
-    const grafana = new Grafana(chart, 'my-grafana');
-    grafana.addDashboard('my-dashboard', {
-      title: 'My Dashboard',
-      panels: PANELS,
-    });
-
-    // THEN
-    const manifest = Testing.synth(chart);
-    expect(manifest).toMatchSnapshot();
-    expect(manifest[1].spec.json).toContain('Panel Title');
   });
 
   test('adding panels via method', () => {

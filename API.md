@@ -67,7 +67,7 @@ public addPlugins(plugins: GrafanaPlugin)
 
 A Grafana data source.
 
-> https://grafana.com/docs/grafana/latest/http_api/data_source/
+> https://grafana.com/docs/grafana/latest/administration/provisioning/#example-data-source-config-file
 
 #### Initializer <a name="cdk8s-grafana.DataSource.Initializer"></a>
 
@@ -107,20 +107,10 @@ Name of the data source.
 
 ---
 
-##### `variable`<sup>Required</sup> <a name="cdk8s-grafana.DataSource.property.variable"></a>
-
-- *Type:* `string`
-
-Name of datasource variable used to pass information to dashboards.
-
-> https://github.com/grafana-operator/grafana-operator/blob/master/documentation/dashboards.md#datasource-inputs
-
----
-
 
 ### Grafana <a name="cdk8s-grafana.Grafana"></a>
 
-A Grafana cluster.
+A Grafana instance.
 
 #### Initializer <a name="cdk8s-grafana.Grafana.Initializer"></a>
 
@@ -209,12 +199,15 @@ Title of the dashboard.
 
 ---
 
-##### `dataSources`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.dataSources"></a>
+##### `dataSourceVariables`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.dataSourceVariables"></a>
 
-- *Type:* [`cdk8s-grafana.DataSource`](#cdk8s-grafana.DataSource)[]
-- *Default:* the default data source is added (if it exists)
+- *Type:* {[ key: string ]: `string`}
+- *Default:* no data source variables
 
-Datasources to connect to the dashboard.
+Specify a mapping from data source variables to data source names.
+
+This is only needed you are importing an existing dashboard's JSON
+and it specifies variables within an "__inputs" field.
 
 ---
 
@@ -240,19 +233,13 @@ All other dashboard customizations.
 ##### `labels`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.labels"></a>
 
 - *Type:* {[ key: string ]: `string`}
-- *Default:* labels re-applied from `GrafanaService`
+- *Default:* no labels
 
 Labels to apply to the kubernetes resource.
 
----
-
-##### `panels`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.panels"></a>
-
-- *Type:* `any`[]
-
-Specify panels in the dashboard.
-
-> https://grafana.com/docs/grafana/latest/dashboards/json-model/#panels
+When adding a dashboard to a Grafana instance through the addDashboard
+method on Grafana, labels provided to Grafana will be automatically
+applied. Otherwise, labels must be added manually.
 
 ---
 
@@ -292,6 +279,14 @@ import { DataSourceProps } from 'cdk8s-grafana'
 const dataSourceProps: DataSourceProps = { ... }
 ```
 
+##### `access`<sup>Required</sup> <a name="cdk8s-grafana.DataSourceProps.property.access"></a>
+
+- *Type:* [`cdk8s-grafana.AccessType`](#cdk8s-grafana.AccessType)
+
+Access type of the data source.
+
+---
+
 ##### `name`<sup>Required</sup> <a name="cdk8s-grafana.DataSourceProps.property.name"></a>
 
 - *Type:* `string`
@@ -300,18 +295,18 @@ Name of the data source.
 
 ---
 
-##### `access`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.access"></a>
+##### `type`<sup>Required</sup> <a name="cdk8s-grafana.DataSourceProps.property.type"></a>
 
 - *Type:* `string`
 
-Access type of the data source.
+Type of the data source.
 
 ---
 
 ##### `description`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.description"></a>
 
 - *Type:* `string`
-- *Default:* undefined
+- *Default:* no description
 
 Description of the data source.
 
@@ -320,23 +315,20 @@ Description of the data source.
 ##### `labels`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.labels"></a>
 
 - *Type:* {[ key: string ]: `string`}
-- *Default:* labels re-applied from `GrafanaService`
+- *Default:* no labels
 
 Labels to apply to the kubernetes resource.
 
----
-
-##### `type`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.type"></a>
-
-- *Type:* `string`
-
-Type of the data source.
+When adding a data source to a Grafana instance through the addDatasource
+method on Grafana, labels provided to Grafana will be automatically
+applied. Otherwise, labels must be added manually.
 
 ---
 
 ##### `url`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.url"></a>
 
 - *Type:* `string`
+- *Default:* no url
 
 URL of the data source.
 
@@ -401,7 +393,7 @@ Default admin username.
 - *Type:* [`cdk8s-grafana.DataSourceProps`](#cdk8s-grafana.DataSourceProps)
 - *Default:* no data source added
 
-Default data source - the default data source added to any newly created dashboards.
+Default data source - equivalent to calling `addDataSource()`.
 
 ---
 
@@ -442,4 +434,25 @@ Require login in order to view or manage dashboards.
 ---
 
 
+
+## Enums <a name="Enums"></a>
+
+### AccessType <a name="AccessType"></a>
+
+Mode for accessing a data source.
+
+> https://grafana.com/docs/grafana/latest/administration/provisioning/#example-data-source-config-file
+
+#### `PROXY` <a name="cdk8s-grafana.AccessType.PROXY"></a>
+
+Access via proxy.
+
+---
+
+
+#### `DIRECT` <a name="cdk8s-grafana.AccessType.DIRECT"></a>
+
+Access directly (via server or browser in UI).
+
+---
 

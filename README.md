@@ -36,20 +36,6 @@ const dashboard = grafana.addDashboard('my-dashboard', {
   title: 'My Dashboard',
   refreshRate: Duration.seconds(10),
   timeRange: Duration.hours(6), // show metrics from now-6h to now
-  panels: [
-    {
-      "type": "text",
-      "title": "Panel Title",
-      "gridPos": {
-        "x": 0,
-        "y": 0,
-        "w": 12,
-        "h": 9
-      },
-      "mode": "markdown",
-      "content": "# title"
-    },
-  ],
   plugins: [
     {
       name: 'grafana-piechart-panel',

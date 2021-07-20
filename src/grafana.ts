@@ -276,6 +276,7 @@ export interface DashboardProps {
 export class Dashboard extends Construct {
   private readonly plugins: GrafanaPlugin[];
   private readonly panels: any[];
+  private panelId: number;
   constructor(scope: Construct, id: string, props: DashboardProps) {
     super(scope, id);
 
@@ -288,6 +289,7 @@ export class Dashboard extends Construct {
 
     this.plugins = [];
     this.panels = [];
+    this.panelId = 0;
 
     const defaults = {
       title: props.title,
@@ -300,7 +302,7 @@ export class Dashboard extends Construct {
       graphTooltip: 1,
       panels: this.panels,
       time: {
-        from: `now-${timeRange.toSeconds}s`,
+        from: `now-${timeRange.toSeconds()}s`,
         to: 'now',
       },
       timepicker: {
@@ -313,7 +315,7 @@ export class Dashboard extends Construct {
       annotations: {
         list: [],
       },
-      refresh: `${refreshRate.toSeconds}s`,
+      refresh: `${refreshRate.toSeconds()}s`,
       schemaVersion: 17,
       version: 0,
       links: [],
@@ -365,7 +367,10 @@ export class Dashboard extends Construct {
    */
   public addPanels(...panels: any[]) {
     for (const panel of panels) {
-      this.panels.push(panel);
+      this.panels.push({
+        id: this.panelId++,
+        ...panel,
+      });
     }
   }
 }

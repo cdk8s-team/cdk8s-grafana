@@ -68,6 +68,7 @@ Array [
   \\"graphTooltip\\": 1,
   \\"panels\\": [
     {
+      \\"id\\": 0,
       \\"type\\": \\"text\\",
       \\"title\\": \\"Panel Title\\",
       \\"gridPos\\": {
@@ -81,7 +82,7 @@ Array [
     }
   ],
   \\"time\\": {
-    \\"from\\": \\"now-toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+    \\"from\\": \\"now-21600s\\",
     \\"to\\": \\"now\\"
   },
   \\"timepicker\\": {
@@ -94,7 +95,7 @@ Array [
   \\"annotations\\": {
     \\"list\\": []
   },
-  \\"refresh\\": \\"toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+  \\"refresh\\": \\"5s\\",
   \\"schemaVersion\\": 17,
   \\"version\\": 0,
   \\"links\\": []
@@ -174,6 +175,7 @@ Array [
   \\"graphTooltip\\": 1,
   \\"panels\\": [
     {
+      \\"id\\": 0,
       \\"type\\": \\"text\\",
       \\"title\\": \\"Panel Title\\",
       \\"gridPos\\": {
@@ -187,7 +189,7 @@ Array [
     }
   ],
   \\"time\\": {
-    \\"from\\": \\"now-toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+    \\"from\\": \\"now-21600s\\",
     \\"to\\": \\"now\\"
   },
   \\"timepicker\\": {
@@ -200,7 +202,7 @@ Array [
   \\"annotations\\": {
     \\"list\\": []
   },
-  \\"refresh\\": \\"toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+  \\"refresh\\": \\"5s\\",
   \\"schemaVersion\\": 17,
   \\"version\\": 0,
   \\"links\\": []
@@ -280,7 +282,7 @@ Array [
   \\"graphTooltip\\": 1,
   \\"panels\\": [],
   \\"time\\": {
-    \\"from\\": \\"now-toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+    \\"from\\": \\"now-21600s\\",
     \\"to\\": \\"now\\"
   },
   \\"timepicker\\": {
@@ -293,7 +295,7 @@ Array [
   \\"annotations\\": {
     \\"list\\": []
   },
-  \\"refresh\\": \\"toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+  \\"refresh\\": \\"5s\\",
   \\"schemaVersion\\": 17,
   \\"version\\": 0,
   \\"links\\": []
@@ -382,7 +384,7 @@ Array [
   \\"graphTooltip\\": 1,
   \\"panels\\": [],
   \\"time\\": {
-    \\"from\\": \\"now-toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+    \\"from\\": \\"now-21600s\\",
     \\"to\\": \\"now\\"
   },
   \\"timepicker\\": {
@@ -395,7 +397,7 @@ Array [
   \\"annotations\\": {
     \\"list\\": []
   },
-  \\"refresh\\": \\"toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+  \\"refresh\\": \\"5s\\",
   \\"schemaVersion\\": 17,
   \\"version\\": 0,
   \\"links\\": []
@@ -609,7 +611,7 @@ Array [
   \\"graphTooltip\\": 1,
   \\"panels\\": [],
   \\"time\\": {
-    \\"from\\": \\"now-toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+    \\"from\\": \\"now-21600s\\",
     \\"to\\": \\"now\\"
   },
   \\"timepicker\\": {
@@ -622,7 +624,7 @@ Array [
   \\"annotations\\": {
     \\"list\\": []
   },
-  \\"refresh\\": \\"toSeconds(opts = {}) {\\\\n        return convert(this.amount, this.unit, TimeUnit.Seconds, opts);\\\\n    }s\\",
+  \\"refresh\\": \\"10s\\",
   \\"schemaVersion\\": 17,
   \\"version\\": 0,
   \\"links\\": []

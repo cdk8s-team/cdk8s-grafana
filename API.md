@@ -206,7 +206,7 @@ Title of the dashboard.
 
 Specify a mapping from data source variables to data source names.
 
-This is only needed you are importing an existing dashboard's JSON
+This is only needed if you are importing an existing dashboard's JSON
 and it specifies variables within an "__inputs" field.
 
 ---
@@ -237,8 +237,7 @@ All other dashboard customizations.
 
 Labels to apply to the kubernetes resource.
 
-When adding a dashboard to a Grafana instance through the addDashboard
-method on Grafana, labels provided to Grafana will be automatically
+When adding a dashboard to a Grafana instance using `grafana.addDashboard`, labels provided to Grafana will be automatically
 applied. Otherwise, labels must be added manually.
 
 ---
@@ -263,7 +262,7 @@ Auto-refresh interval.
 ##### `timeRange`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.timeRange"></a>
 
 - *Type:* [`cdk8s.Duration`](#cdk8s.Duration)
-- *Default:* '6h'
+- *Default:* 6 hours
 
 Time range for the dashboard, e.g. last 6 hours, last 7 days, etc.
 

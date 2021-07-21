@@ -16,7 +16,7 @@ export interface DashboardProps {
 
   /**
    * Specify a mapping from data source variables to data source names.
-   * This is only needed you are importing an existing dashboard's JSON
+   * This is only needed if you are importing an existing dashboard's JSON
    * and it specifies variables within an "__inputs" field.
    *
    * @example { DS_PROMETHEUS: "my-prometheus-ds" }
@@ -32,7 +32,7 @@ export interface DashboardProps {
 
   /**
    * Time range for the dashboard, e.g. last 6 hours, last 7 days, etc.
-   * @default - '6h'
+   * @default - 6 hours
    */
   readonly timeRange?: Duration;
 
@@ -44,8 +44,7 @@ export interface DashboardProps {
   /**
    * Labels to apply to the kubernetes resource.
    *
-   * When adding a dashboard to a Grafana instance through the addDashboard
-   * method on Grafana, labels provided to Grafana will be automatically
+   * When adding a dashboard to a Grafana instance using `grafana.addDashboard`, labels provided to Grafana will be automatically
    * applied. Otherwise, labels must be added manually.
    *
    * @default - no labels

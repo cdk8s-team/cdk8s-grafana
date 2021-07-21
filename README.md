@@ -45,6 +45,22 @@ const dashboard = grafana.addDashboard('my-dashboard', {
 });
 ```
 
+Note: the kubernetes grafana operator only supports one Grafana instance per
+namespace (see https://github.com/grafana-operator/grafana-operator/issues/174).
+This may require you to specify namespaces explicitly, e.g.:
+
+```typescript
+const devGrafana = new Grafana(this, 'my-grafana', {
+  namespace: 'dev',
+});
+const prodGrafana = new Grafana(this, 'my-grafana', {
+  namespace: 'prod',
+});
+```
+
+The grafana operator must be added to each namespace for the resources in that
+namespace to be recognized.
+
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more

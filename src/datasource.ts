@@ -24,26 +24,27 @@ export interface DataSourceProps {
   readonly name: string;
 
   /**
+   * Type of the data source.
+   */
+  readonly type: string;
+
+  /**
    * Description of the data source.
    * @default - no description
    */
   readonly description?: string;
 
   /**
-   * Type of the data source.
-   */
-  readonly type: string;
-
-  /**
-   * URL of the data source.
-   * @default - no url
-   */
-  readonly url?: string;
-
-  /**
    * Access type of the data source.
    */
   readonly access: AccessType;
+
+  /**
+   * URL of the data source.
+   *
+   * @default - default url for data source type
+   */
+  readonly url?: string;
 
   /**
    * Labels to apply to the kubernetes resource.
@@ -55,6 +56,16 @@ export interface DataSourceProps {
    * @default - no labels
    */
   readonly labels?: { [name: string]: string };
+
+  /**
+   * Namespace to apply to the kubernetes resource.
+   *
+   * When adding a data source to a Grafana instance using `grafana.addDataSource`,
+   * the namespace will be automatically inherited.
+   *
+   * @default - undefined (will be assigned to the 'default' namespace)
+   */
+  readonly namespace?: string;
 }
 
 /**
@@ -76,6 +87,7 @@ export class DataSource extends Construct {
     new GrafanaDataSource(this, id, {
       metadata: {
         labels: props.labels,
+        namespace: props.namespace,
       },
       spec: {
         name: props.name,

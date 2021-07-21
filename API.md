@@ -36,18 +36,6 @@ new Dashboard(scope: Construct, id: string, props: DashboardProps)
 
 #### Methods <a name="Methods"></a>
 
-##### `addPanels` <a name="cdk8s-grafana.Dashboard.addPanels"></a>
-
-```typescript
-public addPanels(panels: any)
-```
-
-###### `panels`<sup>Required</sup> <a name="cdk8s-grafana.Dashboard.parameter.panels"></a>
-
-- *Type:* `any`
-
----
-
 ##### `addPlugins` <a name="cdk8s-grafana.Dashboard.addPlugins"></a>
 
 ```typescript
@@ -237,8 +225,21 @@ All other dashboard customizations.
 
 Labels to apply to the kubernetes resource.
 
-When adding a dashboard to a Grafana instance using `grafana.addDashboard`, labels provided to Grafana will be automatically
-applied. Otherwise, labels must be added manually.
+When adding a dashboard to a Grafana instance using `grafana.addDashboard`,
+labels provided to Grafana will be automatically applied. Otherwise,
+labels must be added manually.
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.namespace"></a>
+
+- *Type:* `string`
+- *Default:* undefined (will be assigned to the 'default' namespace)
+
+Namespace to apply to the kubernetes resource.
+
+When adding a dashboard to a Grafana instance using `grafana.addDashboard`,
+the namespace will be automatically inherited.
 
 ---
 
@@ -324,10 +325,22 @@ applied. Otherwise, labels must be added manually.
 
 ---
 
+##### `namespace`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.namespace"></a>
+
+- *Type:* `string`
+- *Default:* undefined (will be assigned to the 'default' namespace)
+
+Namespace to apply to the kubernetes resource.
+
+When adding a data source to a Grafana instance using `grafana.addDataSource`,
+the namespace will be automatically inherited.
+
+---
+
 ##### `url`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.url"></a>
 
 - *Type:* `string`
-- *Default:* no url
+- *Default:* default url for data source type
 
 URL of the data source.
 
@@ -420,6 +433,18 @@ Create an ingress to provide external access to the Grafana cluster.
 - *Default:* { app: "grafana" }
 
 Labels to apply to all Grafana resources.
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.namespace"></a>
+
+- *Type:* `string`
+- *Default:* undefined (will be assigned to the 'default' namespace)
+
+Namespace to apply to all Grafana resources.
+
+The Grafana Operator must be
+installed in this namespace for the resources to be recognized.
 
 ---
 

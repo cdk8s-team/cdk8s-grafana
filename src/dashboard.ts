@@ -1,4 +1,4 @@
-import { Duration, Lazy } from 'cdk8s';
+import { Duration } from 'cdk8s';
 import { Construct } from 'constructs';
 import { GrafanaDashboard } from './imports/grafana-dashboard';
 
@@ -44,12 +44,23 @@ export interface DashboardProps {
   /**
    * Labels to apply to the kubernetes resource.
    *
-   * When adding a dashboard to a Grafana instance using `grafana.addDashboard`, labels provided to Grafana will be automatically
-   * applied. Otherwise, labels must be added manually.
+   * When adding a dashboard to a Grafana instance using `grafana.addDashboard`,
+   * labels provided to Grafana will be automatically applied. Otherwise,
+   * labels must be added manually.
    *
    * @default - no labels
    */
   readonly labels?: { [name: string]: string };
+
+  /**
+   * Namespace to apply to the kubernetes resource.
+   *
+   * When adding a dashboard to a Grafana instance using `grafana.addDashboard`,
+   * the namespace will be automatically inherited.
+   *
+   * @default - undefined (will be assigned to the 'default' namespace)
+   */
+  readonly namespace?: string;
 
   /**
    * All other dashboard customizations.
@@ -64,14 +75,10 @@ export interface DashboardProps {
  */
 export class Dashboard extends Construct {
   private readonly plugins: GrafanaPlugin[];
-  private readonly panels: any[];
-  private panelId: number;
   constructor(scope: Construct, id: string, props: DashboardProps) {
     super(scope, id);
 
     this.plugins = [];
-    this.panels = [];
-    this.panelId = 0;
 
     const refreshRate = props.refreshRate ?? Duration.seconds(5);
     const timeRange = props.timeRange ?? Duration.hours(6);
@@ -88,7 +95,7 @@ export class Dashboard extends Construct {
       editable: true,
       hideControls: false,
       graphTooltip: 1,
-      panels: this.panels,
+      panels: [],
       time: {
         from: `now-${timeRange.toSeconds()}s`,
         to: 'now',
@@ -112,22 +119,16 @@ export class Dashboard extends Construct {
     new GrafanaDashboard(this, id, {
       metadata: {
         labels: props.labels,
+        namespace: props.namespace,
       },
       spec: {
         customFolderName: props.folder,
         datasources: dataSources,
         plugins: this.plugins,
-
-        // dashboard contents are expected as a raw JSON string
-        // needs to be generated lazily since this.panels may change
-        json: Lazy.any({
-          produce: () => {
-            return JSON.stringify({
-              ...defaults,
-              ...props.jsonModel,
-            }, null, 2);
-          },
-        }),
+        json: JSON.stringify({
+          ...defaults,
+          ...props.jsonModel,
+        }, null, 2),
         name: id,
       },
     });
@@ -143,18 +144,6 @@ export class Dashboard extends Construct {
   public addPlugins(...plugins: GrafanaPlugin[]) {
     for (const plugin of plugins) {
       this.plugins.push(plugin);
-    }
-  }
-
-  /**
-   * Adds one or more panels.
-   */
-  public addPanels(...panels: any[]) {
-    for (const panel of panels) {
-      this.panels.push({
-        id: this.panelId++,
-        ...panel,
-      });
     }
   }
 }

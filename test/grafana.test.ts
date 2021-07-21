@@ -12,21 +12,6 @@ const PLUGINS = [
   },
 ];
 
-const PANELS = [
-  {
-    type: 'text',
-    title: 'Panel Title',
-    gridPos: {
-      x: 0,
-      y: 0,
-      w: 12,
-      h: 9,
-    },
-    mode: 'markdown',
-    content: '# title',
-  },
-];
-
 describe('a grafana instance', () => {
   test('defaults', () => {
     // GIVEN
@@ -81,6 +66,20 @@ describe('a grafana instance', () => {
       timeRange: Duration.hours(6),
       jsonModel: {
         hideControls: true,
+        panels: [
+          {
+            type: 'text',
+            title: 'Panel Title',
+            gridPos: {
+              x: 0,
+              y: 0,
+              w: 12,
+              h: 9,
+            },
+            mode: 'markdown',
+            content: '# title',
+          },
+        ],
       },
     });
 
@@ -129,6 +128,59 @@ describe('a grafana instance', () => {
     expect(manifest[2].spec.datasources.length).toEqual(1);
   });
 
+  test('labels are inherited by dashboards and data sources', () => {
+    // GIVEN
+    const app = Testing.app();
+    const chart = new Chart(app, 'test');
+
+    // WHEN
+    const grafana = new Grafana(chart, 'my-grafana', {
+      labels: { stage: 'prod' },
+    });
+    grafana.addDashboard('my-dashboard', {
+      title: 'My Dashboard',
+    });
+    grafana.addDataSource('prometheus', {
+      name: 'Prometheus',
+      type: 'prometheus',
+      access: AccessType.PROXY,
+      url: 'http://prometheus-service:9090',
+    });
+
+    // THEN
+    const manifest = Testing.synth(chart);
+    expect(manifest).toMatchSnapshot();
+    expect(manifest[0].metadata.labels.stage).toEqual('prod'); // grafana instance
+    expect(manifest[1].metadata.labels.stage).toEqual('prod'); // dashboard instance
+    expect(manifest[2].metadata.labels.stage).toEqual('prod'); // data source instance
+  });
+
+  test('namespaces are inherited by dashboards and data sources', () => {
+    // GIVEN
+    const app = Testing.app();
+    const chart = new Chart(app, 'test');
+
+    // WHEN
+    const grafana = new Grafana(chart, 'my-grafana', {
+      namespace: 'my-namespace',
+    });
+    grafana.addDashboard('my-dashboard', {
+      title: 'My Dashboard',
+    });
+    grafana.addDataSource('prometheus', {
+      name: 'Prometheus',
+      type: 'prometheus',
+      access: AccessType.PROXY,
+      url: 'http://prometheus-service:9090',
+    });
+
+    // THEN
+    const manifest = Testing.synth(chart);
+    expect(manifest[0].metadata.namespace).toEqual('my-namespace'); // grafana instance
+    expect(manifest[1].metadata.namespace).toEqual('my-namespace'); // dashboard instance
+    expect(manifest[2].metadata.namespace).toEqual('my-namespace'); // data source instance
+  });
+
   test('adding plugins via constructor', () => {
     // GIVEN
     const app = Testing.app();
@@ -143,7 +195,6 @@ describe('a grafana instance', () => {
 
     // THEN
     const manifest = Testing.synth(chart);
-    expect(manifest).toMatchSnapshot();
     expect(manifest[1].spec.plugins).toMatchObject(PLUGINS);
   });
 
@@ -159,23 +210,6 @@ describe('a grafana instance', () => {
 
     // THEN
     const manifest = Testing.synth(chart);
-    expect(manifest).toMatchSnapshot();
     expect(manifest[1].spec.plugins).toMatchObject(PLUGINS);
-  });
-
-  test('adding panels via method', () => {
-    // GIVEN
-    const app = Testing.app();
-    const chart = new Chart(app, 'test');
-
-    // WHEN
-    const grafana = new Grafana(chart, 'my-grafana');
-    const dashboard = grafana.addDashboard('my-dashboard', { title: 'My Dashboard' });
-    dashboard.addPanels(...PANELS);
-
-    // THEN
-    const manifest = Testing.synth(chart);
-    expect(manifest).toMatchSnapshot();
-    expect(manifest[1].spec.json).toContain('Panel Title');
   });
 });

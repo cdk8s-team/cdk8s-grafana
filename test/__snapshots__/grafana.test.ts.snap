@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`a grafana instance adding panels via method 1`] = `
+exports[`a grafana instance defaults 1`] = `
 Array [
   Object {
     "apiVersion": "integreatly.org/v1alpha1",
@@ -9,7 +9,7 @@ Array [
       "labels": Object {
         "app": "grafana",
       },
-      "name": "test-my-grafana-c87951cf",
+      "name": "test-my-grafana-c8153986",
     },
     "spec": Object {
       "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
@@ -46,12 +46,61 @@ Array [
       },
     },
   },
+]
+`;
+
+exports[`a grafana instance labels are inherited by dashboards and data sources 1`] = `
+Array [
+  Object {
+    "apiVersion": "integreatly.org/v1alpha1",
+    "kind": "Grafana",
+    "metadata": Object {
+      "labels": Object {
+        "stage": "prod",
+      },
+      "name": "test-my-grafana-c8153986",
+    },
+    "spec": Object {
+      "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
+      "client": Object {
+        "preferService": true,
+      },
+      "config": Object {
+        "auth.anonymous": Object {
+          "enabled": true,
+        },
+        "log": Object {
+          "level": "info",
+          "mode": "console",
+        },
+        "security": Object {
+          "admin_password": "secret",
+          "admin_user": "root",
+        },
+      },
+      "dashboardLabelSelector": Array [
+        Object {
+          "matchLabels": Object {
+            "stage": "prod",
+          },
+        },
+      ],
+      "deployment": Object {
+        "labels": Object {
+          "stage": "prod",
+        },
+      },
+      "ingress": Object {
+        "enabled": true,
+      },
+    },
+  },
   Object {
     "apiVersion": "integreatly.org/v1alpha1",
     "kind": "GrafanaDashboard",
     "metadata": Object {
       "labels": Object {
-        "app": "grafana",
+        "stage": "prod",
       },
       "name": "test-my-grafana-my-dashboard-c85bcbbe",
     },
@@ -66,21 +115,7 @@ Array [
   \\"editable\\": true,
   \\"hideControls\\": false,
   \\"graphTooltip\\": 1,
-  \\"panels\\": [
-    {
-      \\"id\\": 0,
-      \\"type\\": \\"text\\",
-      \\"title\\": \\"Panel Title\\",
-      \\"gridPos\\": {
-        \\"x\\": 0,
-        \\"y\\": 0,
-        \\"w\\": 12,
-        \\"h\\": 9
-      },
-      \\"mode\\": \\"markdown\\",
-      \\"content\\": \\"# title\\"
-    }
-  ],
+  \\"panels\\": [],
   \\"time\\": {
     \\"from\\": \\"now-21600s\\",
     \\"to\\": \\"now\\"
@@ -104,257 +139,25 @@ Array [
       "plugins": Array [],
     },
   },
-]
-`;
-
-exports[`a grafana instance adding plugins via constructor 1`] = `
-Array [
   Object {
     "apiVersion": "integreatly.org/v1alpha1",
-    "kind": "Grafana",
+    "kind": "GrafanaDataSource",
     "metadata": Object {
       "labels": Object {
-        "app": "grafana",
+        "stage": "prod",
       },
-      "name": "test-my-grafana-c87951cf",
+      "name": "test-my-grafana-prometheus-c8240a46",
     },
     "spec": Object {
-      "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
-      "client": Object {
-        "preferService": true,
-      },
-      "config": Object {
-        "auth.anonymous": Object {
-          "enabled": true,
-        },
-        "log": Object {
-          "level": "info",
-          "mode": "console",
-        },
-        "security": Object {
-          "admin_password": "secret",
-          "admin_user": "root",
-        },
-      },
-      "dashboardLabelSelector": Array [
+      "datasources": Array [
         Object {
-          "matchLabels": Object {
-            "app": "grafana",
-          },
+          "access": "proxy",
+          "name": "Prometheus",
+          "type": "prometheus",
+          "url": "http://prometheus-service:9090",
         },
       ],
-      "deployment": Object {
-        "labels": Object {
-          "app": "grafana",
-        },
-      },
-      "ingress": Object {
-        "enabled": true,
-      },
-    },
-  },
-  Object {
-    "apiVersion": "integreatly.org/v1alpha1",
-    "kind": "GrafanaDashboard",
-    "metadata": Object {
-      "labels": Object {
-        "app": "grafana",
-      },
-      "name": "test-my-grafana-my-dashboard-c85bcbbe",
-    },
-    "spec": Object {
-      "datasources": Array [],
-      "json": "{
-  \\"title\\": \\"My Dashboard\\",
-  \\"id\\": null,
-  \\"tags\\": [],
-  \\"style\\": \\"dark\\",
-  \\"timezone\\": \\"browser\\",
-  \\"editable\\": true,
-  \\"hideControls\\": false,
-  \\"graphTooltip\\": 1,
-  \\"panels\\": [],
-  \\"time\\": {
-    \\"from\\": \\"now-21600s\\",
-    \\"to\\": \\"now\\"
-  },
-  \\"timepicker\\": {
-    \\"time_options\\": [],
-    \\"refresh_intervals\\": []
-  },
-  \\"templating\\": {
-    \\"list\\": []
-  },
-  \\"annotations\\": {
-    \\"list\\": []
-  },
-  \\"refresh\\": \\"5s\\",
-  \\"schemaVersion\\": 17,
-  \\"version\\": 0,
-  \\"links\\": []
-}",
-      "name": "my-dashboard",
-      "plugins": Array [
-        Object {
-          "name": "grafana-piechart-panel",
-          "version": "1.3.6",
-        },
-        Object {
-          "name": "grafana-clock-panel",
-          "version": "1.0.2",
-        },
-      ],
-    },
-  },
-]
-`;
-
-exports[`a grafana instance adding plugins via method 1`] = `
-Array [
-  Object {
-    "apiVersion": "integreatly.org/v1alpha1",
-    "kind": "Grafana",
-    "metadata": Object {
-      "labels": Object {
-        "app": "grafana",
-      },
-      "name": "test-my-grafana-c87951cf",
-    },
-    "spec": Object {
-      "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
-      "client": Object {
-        "preferService": true,
-      },
-      "config": Object {
-        "auth.anonymous": Object {
-          "enabled": true,
-        },
-        "log": Object {
-          "level": "info",
-          "mode": "console",
-        },
-        "security": Object {
-          "admin_password": "secret",
-          "admin_user": "root",
-        },
-      },
-      "dashboardLabelSelector": Array [
-        Object {
-          "matchLabels": Object {
-            "app": "grafana",
-          },
-        },
-      ],
-      "deployment": Object {
-        "labels": Object {
-          "app": "grafana",
-        },
-      },
-      "ingress": Object {
-        "enabled": true,
-      },
-    },
-  },
-  Object {
-    "apiVersion": "integreatly.org/v1alpha1",
-    "kind": "GrafanaDashboard",
-    "metadata": Object {
-      "labels": Object {
-        "app": "grafana",
-      },
-      "name": "test-my-grafana-my-dashboard-c85bcbbe",
-    },
-    "spec": Object {
-      "datasources": Array [],
-      "json": "{
-  \\"title\\": \\"My Dashboard\\",
-  \\"id\\": null,
-  \\"tags\\": [],
-  \\"style\\": \\"dark\\",
-  \\"timezone\\": \\"browser\\",
-  \\"editable\\": true,
-  \\"hideControls\\": false,
-  \\"graphTooltip\\": 1,
-  \\"panels\\": [],
-  \\"time\\": {
-    \\"from\\": \\"now-21600s\\",
-    \\"to\\": \\"now\\"
-  },
-  \\"timepicker\\": {
-    \\"time_options\\": [],
-    \\"refresh_intervals\\": []
-  },
-  \\"templating\\": {
-    \\"list\\": []
-  },
-  \\"annotations\\": {
-    \\"list\\": []
-  },
-  \\"refresh\\": \\"5s\\",
-  \\"schemaVersion\\": 17,
-  \\"version\\": 0,
-  \\"links\\": []
-}",
-      "name": "my-dashboard",
-      "plugins": Array [
-        Object {
-          "name": "grafana-piechart-panel",
-          "version": "1.3.6",
-        },
-        Object {
-          "name": "grafana-clock-panel",
-          "version": "1.0.2",
-        },
-      ],
-    },
-  },
-]
-`;
-
-exports[`a grafana instance defaults 1`] = `
-Array [
-  Object {
-    "apiVersion": "integreatly.org/v1alpha1",
-    "kind": "Grafana",
-    "metadata": Object {
-      "labels": Object {
-        "app": "grafana",
-      },
-      "name": "test-my-grafana-c87951cf",
-    },
-    "spec": Object {
-      "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
-      "client": Object {
-        "preferService": true,
-      },
-      "config": Object {
-        "auth.anonymous": Object {
-          "enabled": true,
-        },
-        "log": Object {
-          "level": "info",
-          "mode": "console",
-        },
-        "security": Object {
-          "admin_password": "secret",
-          "admin_user": "root",
-        },
-      },
-      "dashboardLabelSelector": Array [
-        Object {
-          "matchLabels": Object {
-            "app": "grafana",
-          },
-        },
-      ],
-      "deployment": Object {
-        "labels": Object {
-          "app": "grafana",
-        },
-      },
-      "ingress": Object {
-        "enabled": true,
-      },
+      "name": "Prometheus",
     },
   },
 ]
@@ -369,7 +172,7 @@ Array [
       "labels": Object {
         "app": "grafana",
       },
-      "name": "test-my-grafana-c87951cf",
+      "name": "test-my-grafana-c8153986",
     },
     "spec": Object {
       "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
@@ -499,7 +302,7 @@ Array [
       "labels": Object {
         "app": "grafana",
       },
-      "name": "test-my-grafana-c87951cf",
+      "name": "test-my-grafana-c8153986",
     },
     "spec": Object {
       "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
@@ -548,7 +351,7 @@ Array [
       "labels": Object {
         "app": "grafana",
       },
-      "name": "test-my-grafana-c87951cf",
+      "name": "test-my-grafana-c8153986",
     },
     "spec": Object {
       "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
@@ -627,7 +430,20 @@ Array [
   \\"editable\\": true,
   \\"hideControls\\": true,
   \\"graphTooltip\\": 1,
-  \\"panels\\": [],
+  \\"panels\\": [
+    {
+      \\"type\\": \\"text\\",
+      \\"title\\": \\"Panel Title\\",
+      \\"gridPos\\": {
+        \\"x\\": 0,
+        \\"y\\": 0,
+        \\"w\\": 12,
+        \\"h\\": 9
+      },
+      \\"mode\\": \\"markdown\\",
+      \\"content\\": \\"# title\\"
+    }
+  ],
   \\"time\\": {
     \\"from\\": \\"now-21600s\\",
     \\"to\\": \\"now\\"

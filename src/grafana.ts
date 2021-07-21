@@ -46,6 +46,14 @@ export interface GrafanaProps {
    * @default - { app: "grafana" }
    */
   readonly labels?: { [name: string]: string };
+
+  /**
+   * Namespace to apply to all Grafana resources. The Grafana Operator must be
+   * installed in this namespace for the resources to be recognized.
+   *
+   * @default - undefined (will be assigned to the 'default' namespace)
+   */
+  readonly namespace?: string;
 }
 
 /**
@@ -54,6 +62,7 @@ export interface GrafanaProps {
 export class Grafana extends Construct {
   private readonly dataSources: DataSource[];
   private readonly dashboards: Dashboard[];
+  private readonly namespace: string | undefined;
   private readonly labels: { [name: string]: string };
 
   constructor(scope: Construct, id: string, props: GrafanaProps = {}) {
@@ -62,6 +71,7 @@ export class Grafana extends Construct {
     this.labels = props.labels ?? { app: 'grafana' };
     this.dataSources = [];
     this.dashboards = [];
+    this.namespace = props.namespace;
 
     const baseImage = props.image ?? 'public.ecr.aws/ubuntu/grafana:latest';
     const ingress = props.ingress ?? true;
@@ -70,9 +80,10 @@ export class Grafana extends Construct {
     const requireLogin = props.requireLogin ?? false;
     const dashboardLabelSelectors: LabelSelector[] = [{ matchLabels: this.labels ?? { app: 'grafana' } }];
 
-    new RawGrafana(this, id, {
+    new RawGrafana(this, 'Resource', {
       metadata: {
         labels: this.labels,
+        namespace: this.namespace,
       },
       spec: {
         baseImage: baseImage,
@@ -118,7 +129,11 @@ export class Grafana extends Construct {
       ...this.labels,
       ...props.labels,
     };
-    const datasource = new DataSource(this, id, { labels, ...props });
+    const datasource = new DataSource(this, id, {
+      labels,
+      namespace: this.namespace,
+      ...props,
+    });
     this.dataSources.push(datasource);
     return datasource;
   }
@@ -133,7 +148,11 @@ export class Grafana extends Construct {
       ...this.labels,
       ...props.labels,
     };
-    const dashboard = new Dashboard(this, id, { labels, ...props });
+    const dashboard = new Dashboard(this, id, {
+      labels,
+      namespace: this.namespace,
+      ...props,
+    });
     this.dashboards.push(dashboard);
     return dashboard;
   }

@@ -29,18 +29,19 @@ export interface DataSourceProps {
   readonly type: string;
 
   /**
+   * Access type of the data source.
+   */
+  readonly access: AccessType;
+
+  /**
    * Description of the data source.
    * @default - no description
    */
   readonly description?: string;
 
   /**
-   * Access type of the data source.
-   */
-  readonly access: AccessType;
-
-  /**
-   * URL of the data source.
+   * URL of the data source. Most resources besides the 'testdata' data source
+   * type require this field in order to retrieve data.
    *
    * @default - default url for data source type
    */
@@ -49,9 +50,9 @@ export interface DataSourceProps {
   /**
    * Labels to apply to the kubernetes resource.
    *
-   * When adding a data source to a Grafana instance through the addDatasource
-   * method on Grafana, labels provided to Grafana will be automatically
-   * applied. Otherwise, labels must be added manually.
+   * When adding a data source to a Grafana instance using `grafana.addDataSource`,
+   * labels provided to Grafana will be automatically applied. Otherwise,
+   * labels must be added manually.
    *
    * @default - no labels
    */
@@ -70,7 +71,6 @@ export interface DataSourceProps {
 
 /**
  * A Grafana data source.
- * @see https://grafana.com/docs/grafana/latest/http_api/data_source/
  * @see https://grafana.com/docs/grafana/latest/administration/provisioning/#example-data-source-config-file
  */
 export class DataSource extends Construct {

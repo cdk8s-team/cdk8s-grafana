@@ -319,9 +319,9 @@ Description of the data source.
 
 Labels to apply to the kubernetes resource.
 
-When adding a data source to a Grafana instance through the addDatasource
-method on Grafana, labels provided to Grafana will be automatically
-applied. Otherwise, labels must be added manually.
+When adding a data source to a Grafana instance using `grafana.addDataSource`,
+labels provided to Grafana will be automatically applied. Otherwise,
+labels must be added manually.
 
 ---
 
@@ -343,6 +343,9 @@ the namespace will be automatically inherited.
 - *Default:* default url for data source type
 
 URL of the data source.
+
+Most resources besides the 'testdata' data source
+type require this field in order to retrieve data.
 
 ---
 
@@ -405,7 +408,7 @@ Default admin username.
 - *Type:* [`cdk8s-grafana.DataSourceProps`](#cdk8s-grafana.DataSourceProps)
 - *Default:* no data source added
 
-Default data source - equivalent to calling `addDataSource()`.
+Default data source - equivalent to calling `grafana.addDataSource`.
 
 ---
 
@@ -444,7 +447,7 @@ Labels to apply to all Grafana resources.
 Namespace to apply to all Grafana resources.
 
 The Grafana Operator must be
-installed in this namespace for the resources to be recognized.
+installed in this namespace for resources to be recognized.
 
 ---
 

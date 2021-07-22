@@ -36,7 +36,7 @@ export interface GrafanaProps {
   readonly requireLogin?: boolean;
 
   /**
-   * Default data source - equivalent to calling `addDataSource()`.
+   * Default data source - equivalent to calling `grafana.addDataSource`.
    * @default - no data source added
    */
   readonly defaultDataSource?: DataSourceProps;
@@ -49,7 +49,7 @@ export interface GrafanaProps {
 
   /**
    * Namespace to apply to all Grafana resources. The Grafana Operator must be
-   * installed in this namespace for the resources to be recognized.
+   * installed in this namespace for resources to be recognized.
    *
    * @default - undefined (will be assigned to the 'default' namespace)
    */

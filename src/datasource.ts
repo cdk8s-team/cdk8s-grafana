@@ -84,7 +84,7 @@ export class DataSource extends Construct {
 
     this.name = props.name;
 
-    new GrafanaDataSource(this, id, {
+    new GrafanaDataSource(this, 'Resource', {
       metadata: {
         labels: props.labels,
         namespace: props.namespace,

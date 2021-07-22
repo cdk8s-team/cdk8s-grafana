@@ -116,7 +116,7 @@ export class Dashboard extends Construct {
       links: [],
     } as any;
 
-    new GrafanaDashboard(this, id, {
+    new GrafanaDashboard(this, 'Resource', {
       metadata: {
         labels: props.labels,
         namespace: props.namespace,

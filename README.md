@@ -36,20 +36,6 @@ const dashboard = grafana.addDashboard('my-dashboard', {
   title: 'My Dashboard',
   refreshRate: Duration.seconds(10),
   timeRange: Duration.hours(6), // show metrics from now-6h to now
-  panels: [
-    {
-      "type": "text",
-      "title": "Panel Title",
-      "gridPos": {
-        "x": 0,
-        "y": 0,
-        "w": 12,
-        "h": 9
-      },
-      "mode": "markdown",
-      "content": "# title"
-    },
-  ],
   plugins: [
     {
       name: 'grafana-piechart-panel',
@@ -58,6 +44,22 @@ const dashboard = grafana.addDashboard('my-dashboard', {
   ],
 });
 ```
+
+Note: the kubernetes grafana operator only supports one Grafana instance per
+namespace (see https://github.com/grafana-operator/grafana-operator/issues/174).
+This may require specifying namespaces explicitly, e.g.:
+
+```typescript
+const devGrafana = new Grafana(this, 'my-grafana', {
+  namespace: 'dev',
+});
+const prodGrafana = new Grafana(this, 'my-grafana', {
+  namespace: 'prod',
+});
+```
+
+The grafana operator must be installed in each namespace for the resources in
+that namespace to be recognized.
 
 ## Security
 

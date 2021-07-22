@@ -1,5 +1,3 @@
-export class Hello {
-  public sayHello() {
-    return 'hello, world!';
-  }
-}
+export * from './dashboard';
+export * from './datasource';
+export * from './grafana';

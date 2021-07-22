@@ -1,18 +1,22 @@
-const { ConstructLibraryCdk8s } = require('projen');
-const project = new ConstructLibraryCdk8s({
-  author: 'Christopher Rybicki',
-  authorAddress: 'rybickic@amazon.com',
-  cdk8sVersion: '1.0.0-beta.10',
-  defaultReleaseBranch: 'main',
+const { JsiiProject } = require('projen');
+const project = new JsiiProject({
   name: 'cdk8s-grafana',
-  repositoryUrl: 'https://github.com/cdk8s-team/cdk8s-grafana.git',
-  constructsVersion: '3.3.48',
+  description: 'Grafana construct for cdk8s.',
+  author: 'Amazon Web Services',
+  authorUrl: 'https://aws.amazon.com',
 
-  // deps: [],                          /* Runtime dependencies of this module. */
-  // description: undefined,            /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],                       /* Build dependencies for this module. */
-  // packageName: undefined,            /* The "name" in package.json. */
-  // projectType: ProjectType.UNKNOWN,  /* Which type of project this is (library/app). */
-  // release: undefined,                /* Add release management to this project. */
+  defaultReleaseBranch: 'main',
+  repositoryUrl: 'https://github.com/cdk8s-team/cdk8s-grafana.git',
+  projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
+  peerDeps: [
+    'cdk8s',
+    'constructs',
+  ],
+
+  autoApproveOptions: {
+    allowedUsernames: ['cdk8s-automation'],
+    secret: 'GITHUB_TOKEN',
+  },
+  autoApproveUpgrades: true,
 });
 project.synth();

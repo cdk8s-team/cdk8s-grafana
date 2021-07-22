@@ -1,5 +1,6 @@
 {
   "name": "cdk8s-grafana",
+  "description": "Grafana construct for cdk8s.",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdk8s-team/cdk8s-grafana.git"
@@ -15,7 +16,6 @@
     "bump": "npx projen bump",
     "unbump": "npx projen unbump",
     "upgrade-dependencies": "npx projen upgrade-dependencies",
-    "upgrade-projen": "npx projen upgrade-projen",
     "default": "npx projen default",
     "watch": "npx projen watch",
     "package": "npx projen package",
@@ -28,8 +28,8 @@
     "start": "npx projen start"
   },
   "author": {
-    "name": "Christopher Rybicki",
-    "email": "rybickic@amazon.com",
+    "name": "Amazon Web Services",
+    "url": "https://aws.amazon.com",
     "organization": false
   },
   "devDependencies": {
@@ -38,7 +38,6 @@
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
     "cdk8s": "1.0.0-beta.10",
-    "cdk8s-plus-17": "1.0.0-beta.10",
     "constructs": "3.3.48",
     "eslint": "^7.30.0",
     "eslint-import-resolver-node": "^0.3.4",
@@ -59,13 +58,9 @@
   },
   "peerDependencies": {
     "cdk8s": "^1.0.0-beta.10",
-    "cdk8s-plus-17": "^1.0.0-beta.10",
     "constructs": "^3.3.48"
   },
   "bundledDependencies": [],
-  "keywords": [
-    "cdk"
-  ],
   "main": "lib/index.js",
   "license": "Apache-2.0",
   "version": "0.0.0",

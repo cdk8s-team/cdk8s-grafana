@@ -4,6 +4,7 @@ const project = new JsiiProject({
   description: 'Grafana construct for cdk8s.',
   author: 'Amazon Web Services',
   authorUrl: 'https://aws.amazon.com',
+  keywords: ['cdk', 'cdk8s'],
 
   defaultReleaseBranch: 'main',
   repositoryUrl: 'https://github.com/cdk8s-team/cdk8s-grafana.git',

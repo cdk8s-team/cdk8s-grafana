@@ -61,6 +61,10 @@
     "constructs": "^3.3.48"
   },
   "bundledDependencies": [],
+  "keywords": [
+    "cdk",
+    "cdk8s"
+  ],
   "main": "lib/index.js",
   "license": "Apache-2.0",
   "version": "0.0.0",

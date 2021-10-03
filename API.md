@@ -8,7 +8,7 @@ A Grafana dashboard.
 
 > https://grafana.com/docs/grafana/latest/http_api/dashboard/
 
-#### Initializer <a name="cdk8s-grafana.Dashboard.Initializer"></a>
+#### Initializers <a name="cdk8s-grafana.Dashboard.Initializer"></a>
 
 ```typescript
 import { Dashboard } from 'cdk8s-grafana'
@@ -57,7 +57,7 @@ A Grafana data source.
 
 > https://grafana.com/docs/grafana/latest/administration/provisioning/#example-data-source-config-file
 
-#### Initializer <a name="cdk8s-grafana.DataSource.Initializer"></a>
+#### Initializers <a name="cdk8s-grafana.DataSource.Initializer"></a>
 
 ```typescript
 import { DataSource } from 'cdk8s-grafana'
@@ -89,6 +89,10 @@ new DataSource(scope: Construct, id: string, props: DataSourceProps)
 
 ##### `name`<sup>Required</sup> <a name="cdk8s-grafana.DataSource.property.name"></a>
 
+```typescript
+public readonly name: string;
+```
+
 - *Type:* `string`
 
 Name of the data source.
@@ -100,7 +104,7 @@ Name of the data source.
 
 A Grafana instance.
 
-#### Initializer <a name="cdk8s-grafana.Grafana.Initializer"></a>
+#### Initializers <a name="cdk8s-grafana.Grafana.Initializer"></a>
 
 ```typescript
 import { Grafana } from 'cdk8s-grafana'
@@ -181,6 +185,10 @@ const dashboardProps: DashboardProps = { ... }
 
 ##### `title`<sup>Required</sup> <a name="cdk8s-grafana.DashboardProps.property.title"></a>
 
+```typescript
+public readonly title: string;
+```
+
 - *Type:* `string`
 
 Title of the dashboard.
@@ -188,6 +196,10 @@ Title of the dashboard.
 ---
 
 ##### `dataSourceVariables`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.dataSourceVariables"></a>
+
+```typescript
+public readonly dataSourceVariables: {[ key: string ]: string};
+```
 
 - *Type:* {[ key: string ]: `string`}
 - *Default:* no data source variables
@@ -201,6 +213,10 @@ and it specifies variables within an "__inputs" field.
 
 ##### `folder`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.folder"></a>
 
+```typescript
+public readonly folder: string;
+```
+
 - *Type:* `string`
 - *Default:* default folder
 
@@ -209,6 +225,10 @@ Group dashboards into folders.
 ---
 
 ##### `jsonModel`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.jsonModel"></a>
+
+```typescript
+public readonly jsonModel: {[ key: string ]: any};
+```
 
 - *Type:* {[ key: string ]: `any`}
 
@@ -219,6 +239,10 @@ All other dashboard customizations.
 ---
 
 ##### `labels`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.labels"></a>
+
+```typescript
+public readonly labels: {[ key: string ]: string};
+```
 
 - *Type:* {[ key: string ]: `string`}
 - *Default:* no labels
@@ -233,6 +257,10 @@ labels must be added manually.
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.namespace"></a>
 
+```typescript
+public readonly namespace: string;
+```
+
 - *Type:* `string`
 - *Default:* undefined (will be assigned to the 'default' namespace)
 
@@ -245,6 +273,10 @@ the namespace will be automatically inherited.
 
 ##### `plugins`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.plugins"></a>
 
+```typescript
+public readonly plugins: GrafanaPlugin[];
+```
+
 - *Type:* [`cdk8s-grafana.GrafanaPlugin`](#cdk8s-grafana.GrafanaPlugin)[]
 
 Specify plugins required by the dashboard.
@@ -252,6 +284,10 @@ Specify plugins required by the dashboard.
 ---
 
 ##### `refreshRate`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.refreshRate"></a>
+
+```typescript
+public readonly refreshRate: Duration;
+```
 
 - *Type:* [`cdk8s.Duration`](#cdk8s.Duration)
 - *Default:* 5 seconds
@@ -261,6 +297,10 @@ Auto-refresh interval.
 ---
 
 ##### `timeRange`<sup>Optional</sup> <a name="cdk8s-grafana.DashboardProps.property.timeRange"></a>
+
+```typescript
+public readonly timeRange: Duration;
+```
 
 - *Type:* [`cdk8s.Duration`](#cdk8s.Duration)
 - *Default:* 6 hours
@@ -281,6 +321,10 @@ const dataSourceProps: DataSourceProps = { ... }
 
 ##### `access`<sup>Required</sup> <a name="cdk8s-grafana.DataSourceProps.property.access"></a>
 
+```typescript
+public readonly access: AccessType;
+```
+
 - *Type:* [`cdk8s-grafana.AccessType`](#cdk8s-grafana.AccessType)
 
 Access type of the data source.
@@ -288,6 +332,10 @@ Access type of the data source.
 ---
 
 ##### `name`<sup>Required</sup> <a name="cdk8s-grafana.DataSourceProps.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
 
 - *Type:* `string`
 
@@ -297,6 +345,10 @@ Name of the data source.
 
 ##### `type`<sup>Required</sup> <a name="cdk8s-grafana.DataSourceProps.property.type"></a>
 
+```typescript
+public readonly type: string;
+```
+
 - *Type:* `string`
 
 Type of the data source.
@@ -304,6 +356,10 @@ Type of the data source.
 ---
 
 ##### `description`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.description"></a>
+
+```typescript
+public readonly description: string;
+```
 
 - *Type:* `string`
 - *Default:* no description
@@ -313,6 +369,10 @@ Description of the data source.
 ---
 
 ##### `labels`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.labels"></a>
+
+```typescript
+public readonly labels: {[ key: string ]: string};
+```
 
 - *Type:* {[ key: string ]: `string`}
 - *Default:* no labels
@@ -327,6 +387,10 @@ labels must be added manually.
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.namespace"></a>
 
+```typescript
+public readonly namespace: string;
+```
+
 - *Type:* `string`
 - *Default:* undefined (will be assigned to the 'default' namespace)
 
@@ -338,6 +402,10 @@ the namespace will be automatically inherited.
 ---
 
 ##### `url`<sup>Optional</sup> <a name="cdk8s-grafana.DataSourceProps.property.url"></a>
+
+```typescript
+public readonly url: string;
+```
 
 - *Type:* `string`
 - *Default:* default url for data source type
@@ -361,6 +429,10 @@ const grafanaPlugin: GrafanaPlugin = { ... }
 
 ##### `name`<sup>Required</sup> <a name="cdk8s-grafana.GrafanaPlugin.property.name"></a>
 
+```typescript
+public readonly name: string;
+```
+
 - *Type:* `string`
 
 Name of the plugin, e.g. "grafana-piechart-panel".
@@ -368,6 +440,10 @@ Name of the plugin, e.g. "grafana-piechart-panel".
 ---
 
 ##### `version`<sup>Required</sup> <a name="cdk8s-grafana.GrafanaPlugin.property.version"></a>
+
+```typescript
+public readonly version: string;
+```
 
 - *Type:* `string`
 
@@ -387,6 +463,10 @@ const grafanaProps: GrafanaProps = { ... }
 
 ##### `adminPassword`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.adminPassword"></a>
 
+```typescript
+public readonly adminPassword: string;
+```
+
 - *Type:* `string`
 - *Default:* "secret"
 
@@ -395,6 +475,10 @@ Default admin password.
 ---
 
 ##### `adminUser`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.adminUser"></a>
+
+```typescript
+public readonly adminUser: string;
+```
 
 - *Type:* `string`
 - *Default:* "root"
@@ -405,6 +489,10 @@ Default admin username.
 
 ##### `defaultDataSource`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.defaultDataSource"></a>
 
+```typescript
+public readonly defaultDataSource: DataSourceProps;
+```
+
 - *Type:* [`cdk8s-grafana.DataSourceProps`](#cdk8s-grafana.DataSourceProps)
 - *Default:* no data source added
 
@@ -413,6 +501,10 @@ Default data source - equivalent to calling `grafana.addDataSource`.
 ---
 
 ##### `image`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.image"></a>
+
+```typescript
+public readonly image: string;
+```
 
 - *Type:* `string`
 - *Default:* "public.ecr.aws/ubuntu/grafana:latest"
@@ -423,6 +515,10 @@ Specify a custom image for Grafana.
 
 ##### `ingress`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.ingress"></a>
 
+```typescript
+public readonly ingress: boolean;
+```
+
 - *Type:* `boolean`
 - *Default:* true
 
@@ -432,6 +528,10 @@ Create an ingress to provide external access to the Grafana cluster.
 
 ##### `labels`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.labels"></a>
 
+```typescript
+public readonly labels: {[ key: string ]: string};
+```
+
 - *Type:* {[ key: string ]: `string`}
 - *Default:* { app: "grafana" }
 
@@ -440,6 +540,10 @@ Labels to apply to all Grafana resources.
 ---
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
 
 - *Type:* `string`
 - *Default:* undefined (will be assigned to the 'default' namespace)
@@ -452,6 +556,10 @@ installed in this namespace for resources to be recognized.
 ---
 
 ##### `requireLogin`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.requireLogin"></a>
+
+```typescript
+public readonly requireLogin: boolean;
+```
 
 - *Type:* `boolean`
 - *Default:* false

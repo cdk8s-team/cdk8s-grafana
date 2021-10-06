@@ -37,7 +37,7 @@
     "@types/node": "^14.17.0",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
-    "cdk8s": "1.0.0-beta.54",
+    "cdk8s": "1.0.0-beta.57",
     "constructs": "3.3.156",
     "eslint": "^7.32.0",
     "eslint-import-resolver-node": "^0.3.6",

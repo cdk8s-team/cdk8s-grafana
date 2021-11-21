@@ -63,8 +63,11 @@
   },
   "bundledDependencies": [],
   "keywords": [
-    "cdk",
-    "cdk8s"
+    "cdk8s",
+    "dashboards",
+    "grafana",
+    "kubernetes",
+    "observability"
   ],
   "main": "lib/index.js",
   "license": "Apache-2.0",

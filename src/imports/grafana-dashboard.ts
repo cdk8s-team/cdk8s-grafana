@@ -14,7 +14,7 @@ export class GrafanaDashboard extends ApiObject {
   public static readonly GVK: GroupVersionKind = {
     apiVersion: 'integreatly.org/v1alpha1',
     kind: 'GrafanaDashboard',
-  }
+  };
 
   /**
    * Renders a Kubernetes manifest for "GrafanaDashboard".

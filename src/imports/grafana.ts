@@ -14,7 +14,7 @@ export class Grafana extends ApiObject {
   public static readonly GVK: GroupVersionKind = {
     apiVersion: 'integreatly.org/v1alpha1',
     kind: 'Grafana',
-  }
+  };
 
   /**
    * Renders a Kubernetes manifest for "Grafana".

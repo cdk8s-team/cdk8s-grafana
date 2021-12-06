@@ -1,5 +1,5 @@
-const { JsiiProject } = require('projen');
-const project = new JsiiProject({
+const { cdk } = require('projen');
+const project = new cdk.JsiiProject({
   name: 'cdk8s-grafana',
   description: 'Grafana construct for cdk8s.',
   author: 'Amazon Web Services',

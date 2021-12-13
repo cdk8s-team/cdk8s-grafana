@@ -20,10 +20,27 @@ const project = new cdk.JsiiProject({
     'constructs',
   ],
 
+  publishToMaven: {
+    javaPackage: 'org.cdk8s.grafana',
+    mavenGroupId: 'org.cdk8s',
+    mavenArtifactId: 'cdk8s-grafana',
+  },
+
+  publishToPypi: {
+    distName: 'cdk8s-grafana',
+    module: 'cdk8s_grafana',
+  },
+
+  publishToNuget: {
+    dotNetNamespace: 'Org.Cdk8s.Grafana',
+    packageId: 'Org.Cdk8s.Grafana',
+  },
+
   autoApproveOptions: {
     allowedUsernames: ['cdk8s-automation'],
     secret: 'GITHUB_TOKEN',
   },
   autoApproveUpgrades: true,
 });
+
 project.synth();

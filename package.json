@@ -113,7 +113,23 @@
   "stability": "stable",
   "jsii": {
     "outdir": "dist",
-    "targets": {},
+    "targets": {
+      "java": {
+        "package": "org.cdk8s.grafana",
+        "maven": {
+          "groupId": "org.cdk8s",
+          "artifactId": "cdk8s-grafana"
+        }
+      },
+      "python": {
+        "distName": "cdk8s-grafana",
+        "module": "cdk8s_grafana"
+      },
+      "dotnet": {
+        "namespace": "Org.Cdk8s.Grafana",
+        "packageId": "Org.Cdk8s.Grafana"
+      }
+    },
     "tsc": {
       "outDir": "lib",
       "rootDir": "src"

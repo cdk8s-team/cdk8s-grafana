@@ -17,7 +17,7 @@ const project = new cdk.JsiiProject({
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
   peerDeps: [
     'cdk8s',
-    'constructs@^10',
+    'constructs',
   ],
 
   publishToMaven: {

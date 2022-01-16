@@ -129,7 +129,6 @@ export class Dashboard extends Construct {
           ...defaults,
           ...props.jsonModel,
         }, null, 2),
-        name: id,
       },
     });
 

@@ -135,7 +135,6 @@ Array [
   \\"version\\": 0,
   \\"links\\": []
 }",
-      "name": "my-dashboard",
       "plugins": Array [],
     },
   },
@@ -286,7 +285,6 @@ Array [
     }
   ]
 }",
-      "name": "my-dashboard",
       "plugins": Array [],
     },
   },
@@ -463,7 +461,6 @@ Array [
   \\"version\\": 0,
   \\"links\\": []
 }",
-      "name": "my-dashboard",
       "plugins": Array [],
     },
   },

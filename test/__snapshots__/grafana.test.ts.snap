@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`a grafana instance Nodeport and no ingress 1`] = `
+Array [
+  Object {
+    "apiVersion": "integreatly.org/v1alpha1",
+    "kind": "Grafana",
+    "metadata": Object {
+      "labels": Object {
+        "app": "grafana",
+      },
+      "name": "test-my-grafana-c8153986",
+    },
+    "spec": Object {
+      "baseImage": "public.ecr.aws/ubuntu/grafana:latest",
+      "client": Object {
+        "preferService": true,
+      },
+      "config": Object {
+        "auth.anonymous": Object {
+          "enabled": true,
+        },
+        "log": Object {
+          "level": "info",
+          "mode": "console",
+        },
+        "security": Object {
+          "admin_password": "secret",
+          "admin_user": "root",
+        },
+      },
+      "dashboardLabelSelector": Array [
+        Object {
+          "matchLabels": Object {
+            "app": "grafana",
+          },
+        },
+      ],
+      "deployment": Object {
+        "labels": Object {
+          "app": "grafana",
+        },
+      },
+      "ingress": Object {
+        "enabled": false,
+      },
+      "service": Object {
+        "type": "NodePort",
+      },
+    },
+  },
+]
+`;
+
 exports[`a grafana instance defaults 1`] = `
 Array [
   Object {
@@ -43,6 +95,9 @@ Array [
       },
       "ingress": Object {
         "enabled": true,
+      },
+      "service": Object {
+        "type": "ClusterIP",
       },
     },
   },
@@ -92,6 +147,9 @@ Array [
       },
       "ingress": Object {
         "enabled": true,
+      },
+      "service": Object {
+        "type": "ClusterIP",
       },
     },
   },
@@ -205,6 +263,9 @@ Array [
       },
       "ingress": Object {
         "enabled": true,
+      },
+      "service": Object {
+        "type": "ClusterIP",
       },
     },
   },
@@ -335,6 +396,9 @@ Array [
       "ingress": Object {
         "enabled": true,
       },
+      "service": Object {
+        "type": "ClusterIP",
+      },
     },
   },
 ]
@@ -383,6 +447,9 @@ Array [
       },
       "ingress": Object {
         "enabled": true,
+      },
+      "service": Object {
+        "type": "ClusterIP",
       },
     },
   },

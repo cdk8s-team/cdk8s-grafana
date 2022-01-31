@@ -568,6 +568,19 @@ Require login in order to view or manage dashboards.
 
 ---
 
+##### `serviceType`<sup>Optional</sup> <a name="cdk8s-grafana.GrafanaProps.property.serviceType"></a>
+
+```typescript
+public readonly serviceType: string;
+```
+
+- *Type:* `string`
+- *Default:* ClusterIP
+
+Type of service to be created (NodePort, ClusterIP or LoadBalancer).
+
+---
+
 
 
 ## Enums <a name="Enums"></a>

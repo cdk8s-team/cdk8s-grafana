@@ -25,6 +25,24 @@ describe('a grafana instance', () => {
     expect(Testing.synth(chart)).toMatchSnapshot();
   });
 
+  test('Nodeport and no ingress', () => {
+    // GIVEN
+    const app = Testing.app();
+    const chart = new Chart(app, 'test');
+
+    // WHEN
+    new Grafana(chart, 'my-grafana', {
+      ingress: false,
+      serviceType: 'NodePort',
+    });
+
+    // THEN
+    const manifest = Testing.synth(chart);
+    expect(manifest).toMatchSnapshot();
+    expect(manifest[0].spec.ingress.enabled).toEqual(false);
+    expect(manifest[0].spec.service.type).toEqual('NodePort');
+  });
+
   test('with customized auth', () => {
     // GIVEN
     const app = Testing.app();

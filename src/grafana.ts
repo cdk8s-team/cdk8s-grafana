@@ -18,6 +18,12 @@ export interface GrafanaProps {
   readonly ingress?: boolean;
 
   /**
+   * Type of service to be created (NodePort, ClusterIP or LoadBalancer)
+   * @default ClusterIP
+   */
+  readonly serviceType?: string;
+
+  /**
    * Default admin username.
    * @default "root"
    */
@@ -75,6 +81,7 @@ export class Grafana extends Construct {
 
     const baseImage = props.image ?? 'public.ecr.aws/ubuntu/grafana:latest';
     const ingress = props.ingress ?? true;
+    const serviceType = props.serviceType ?? 'ClusterIP';
     const adminUser = props.adminUser ?? 'root';
     const adminPassword = props.adminPassword ?? 'secret';
     const requireLogin = props.requireLogin ?? false;
@@ -89,6 +96,9 @@ export class Grafana extends Construct {
         baseImage: baseImage,
         ingress: {
           enabled: ingress,
+        },
+        service: {
+          type: serviceType,
         },
         client: {
           // without this, dashboards may not be automatically discovered

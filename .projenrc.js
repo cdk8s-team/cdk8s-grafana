@@ -1,4 +1,4 @@
-const { cdk } = require('projen');
+const { cdk, javascript } = require('projen');
 const project = new cdk.JsiiProject({
   name: 'cdk8s-grafana',
   description: 'Grafana construct for cdk8s.',
@@ -41,6 +41,15 @@ const project = new cdk.JsiiProject({
     secret: 'GITHUB_TOKEN',
   },
   autoApproveUpgrades: true,
+
+  // run upgrade-dependencies workflow at a different hour than other cdk8s
+  // repos to decrease flakiness of integration tests caused by new versions of
+  // cdk8s being published to different languages at the same time
+  depsUpgradeOptions: {
+    workflowOptions: {
+      schedule: javascript.UpgradeDependenciesSchedule.expressions(['0 1 * * *']),
+    },
+  },
 });
 
 project.synth();

@@ -1,5 +1,5 @@
-const { cdk } = require('projen');
 const { Cdk8sCommon } = require('@cdk8s/projen-common');
+const { cdk } = require('projen');
 
 const project = new cdk.JsiiProject({
   name: 'cdk8s-grafana',
@@ -23,7 +23,7 @@ const project = new cdk.JsiiProject({
   ],
 
   devDeps: [
-    '@cdk8s/projen-common'
+    '@cdk8s/projen-common',
   ],
 
   publishToMaven: {

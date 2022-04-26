@@ -2,6 +2,8 @@ const { Cdk8sCommon } = require('@cdk8s/projen-common');
 const { cdk } = require('projen');
 
 const project = new cdk.JsiiProject({
+  ...Cdk8sCommon.props,
+
   name: 'cdk8s-grafana',
   description: 'Grafana construct for cdk8s.',
   author: 'Amazon Web Services',
@@ -41,12 +43,6 @@ const project = new cdk.JsiiProject({
     dotNetNamespace: 'Org.Cdk8s.Grafana',
     packageId: 'Org.Cdk8s.Grafana',
   },
-
-  autoApproveOptions: {
-    allowedUsernames: ['cdk8s-automation'],
-    secret: 'GITHUB_TOKEN',
-  },
-  autoApproveUpgrades: true,
 
   depsUpgradeOptions: {
     workflowOptions: {

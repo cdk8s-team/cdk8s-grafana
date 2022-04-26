@@ -285,10 +285,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cdk8s/projen-common@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.2.tgz#506c0f2c513973a8c639eb28eb1b2422e7215ff9"
-  integrity sha512-T9E4jBD4DuIX3q7UtvXiNxI/DnlYv/rAerO5ctX+ckiW+42+HlA32ebtAUG2NOOKoiSMyrJpOC9O52rPffxNaA==
+"@cdk8s/projen-common@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.3.tgz#3260c6f18d095b2298fbdfb885fbba5d253a52dd"
+  integrity sha512-1/mR8v4cNGxs0A96KxqQJjtZwPuZOuRshM3F7CUbBG26AbYZpYU69zHlYcR21j/bzqHUa6wSwZ6dUInx2zu2JA==
 
 "@eslint/eslintrc@^1.2.2":
   version "1.2.2"

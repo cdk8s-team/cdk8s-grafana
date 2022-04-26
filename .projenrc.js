@@ -1,5 +1,9 @@
-const { cdk, javascript } = require('projen');
+const { Cdk8sCommon } = require('@cdk8s/projen-common');
+const { cdk } = require('projen');
+
 const project = new cdk.JsiiProject({
+  ...Cdk8sCommon.props,
+
   name: 'cdk8s-grafana',
   description: 'Grafana construct for cdk8s.',
   author: 'Amazon Web Services',
@@ -20,6 +24,10 @@ const project = new cdk.JsiiProject({
     'constructs',
   ],
 
+  devDeps: [
+    '@cdk8s/projen-common',
+  ],
+
   publishToMaven: {
     javaPackage: 'org.cdk8s.grafana',
     mavenGroupId: 'org.cdk8s',
@@ -36,20 +44,13 @@ const project = new cdk.JsiiProject({
     packageId: 'Org.Cdk8s.Grafana',
   },
 
-  autoApproveOptions: {
-    allowedUsernames: ['cdk8s-automation'],
-    secret: 'GITHUB_TOKEN',
-  },
-  autoApproveUpgrades: true,
-
-  // run upgrade-dependencies workflow at a different hour than other cdk8s
-  // repos to decrease flakiness of integration tests caused by new versions of
-  // cdk8s being published to different languages at the same time
   depsUpgradeOptions: {
     workflowOptions: {
-      schedule: javascript.UpgradeDependenciesSchedule.expressions(['0 1 * * *']),
+      schedule: Cdk8sCommon.upgradeScheduleFor('cdk8s-grafana'),
     },
   },
 });
+
+new Cdk8sCommon(project);
 
 project.synth();

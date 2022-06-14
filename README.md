@@ -1,5 +1,7 @@
 ## cdk8s-grafana
 
+[![View on Construct Hub](https://constructs.dev/badge?package=cdk8s-grafana)](https://constructs.dev/packages/cdk8s-grafana)
+
 cdk8s-grafana is a library that lets you easily define a Grafana service for
 your kubernetes cluster along with associated dashboards and datasources, using
 a high level API.

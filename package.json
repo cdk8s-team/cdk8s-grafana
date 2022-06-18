@@ -39,12 +39,12 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdk8s/projen-common": "^0.0.8",
+    "@cdk8s/projen-common": "^0.0.9",
     "@types/jest": "^26.0.24",
     "@types/node": "^14",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "cdk8s": "1.6.30",
+    "cdk8s": "1.6.31",
     "constructs": "3.4.39",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
@@ -61,10 +61,10 @@
     "projen": "^0.58.15",
     "standard-version": "^9",
     "ts-jest": "^27",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.4"
   },
   "peerDependencies": {
-    "cdk8s": "^1.6.30",
+    "cdk8s": "^1.6.31",
     "constructs": "^3.4.39"
   },
   "keywords": [

@@ -284,10 +284,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cdk8s/projen-common@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.11.tgz#4cc84aeff9f40b317e5fd57c6f651ec04d039a60"
-  integrity sha512-rK2zBMzAsgdJJX4HIcpRIB8aX4aDRl8kELvrlrrrc9ABg9/5o9gdJcS2YzZbPgFpoCo7jR1T15B020YmlEviGw==
+"@cdk8s/projen-common@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.12.tgz#b3ad24e28e8a1c1a78075b3a41959be5e4079487"
+  integrity sha512-FFZJQsRTcOW+c8HYVTOoiWNhgncUV4Uth0m/8/c1fVWD0GccWzMC3RrhaAG/BbX6eFowSRmTYPZoXb8DOJ2EPQ==
 
 "@eslint/eslintrc@^1.3.0":
   version "1.3.0"
@@ -657,9 +657,9 @@
     infer-owner "^1.0.4"
 
 "@npmcli/run-script@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@npmcli/run-script/-/run-script-4.1.0.tgz#1ecd270f6a14841721848f0a7dba441676fc45ab"
-  integrity sha512-bVX9/2YhQscdlC5WEDQ8HH7bw32klCiAvOSvUHJcmeUTUuaQ7z42KiwmnkXWqhVKKhbWPBp+5H0kN6WDyfknzw==
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@npmcli/run-script/-/run-script-4.1.2.tgz#05847f11016139d22f7185a2003a07870bdee6cc"
+  integrity sha512-fCSOS4L4yKRjX+FoWkGHugihBgUK+EjATJn6gfmZnRCt620OqRB8Mrtu/LMv7m1dMrTFVGdywsDq8wFGpyZKDA==
   dependencies:
     "@npmcli/node-gyp" "^2.0.0"
     "@npmcli/promise-spawn" "^3.0.0"
@@ -1389,10 +1389,10 @@ case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk8s@1.6.33:
-  version "1.6.33"
-  resolved "https://registry.yarnpkg.com/cdk8s/-/cdk8s-1.6.33.tgz#06555ea664325bd0b2dc1d33fbd1e282e877215d"
-  integrity sha512-4W0SZPAm8bSd/DhWm+Vu7PS2gbDWa3TwgzWCSYWqmL0zUfYbPhzyuSOhbmxIkbrYOf+pSjHPyHlBHt+rOGQhGA==
+cdk8s@1.6.34:
+  version "1.6.34"
+  resolved "https://registry.yarnpkg.com/cdk8s/-/cdk8s-1.6.34.tgz#5b35325ddb1196374fcf42e36f75a1f724670529"
+  integrity sha512-DT8OR+o4yJzNTBjIX56cWLRGVM5PbOZbdNLGp0LS+yN4/SJ32UStkO08ebSfjbvDTe18Fk7LpIaRokj6e3Nuxg==
   dependencies:
     fast-json-patch "^3.1.1"
     follow-redirects "^1.15.1"
@@ -2011,9 +2011,9 @@ duplexer3@^0.1.4:
   integrity sha512-CEj8FwwNA4cVH2uFCoHUrmojhYh1vmCdOaneKJXwkeY1i9jnlslVo9dx+hQ5Hl9GnH/Bwy/IjxAyOePyPKYnzA==
 
 electron-to-chromium@^1.4.164:
-  version "1.4.165"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.165.tgz#a1ae079a4412b0c2d3bf6908e8db54511fb0bbac"
-  integrity sha512-DKQW1lqUSAYQvn9dnpK7mWaDpWbNOXQLXhfCi7Iwx0BKxdZOxkKcCyKw1l3ihWWW5iWSxKKbhEUoNRoHvl/hbA==
+  version "1.4.167"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.167.tgz#72424aebc85df12c5331d37b1bcfd1ae01322c55"
+  integrity sha512-lPHuHXBwpkr4RcfaZBKm6TKOWG/1N9mVggUpP4fY3l1JIUU2x4fkM8928smYdZ5lF+6KCTAxo1aK9JmqT+X71Q==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -4428,11 +4428,12 @@ npm-normalize-package-bin@^1.0.1:
   integrity sha512-EPfafl6JL5/rU+ot6P3gRSCpPDW5VmIzX959Ob1+ySFUuuYHWHekXpwdUZcKP5C+DS4GEtdJluwBjnsNDl+fSA==
 
 npm-package-arg@^9.0.0, npm-package-arg@^9.0.1:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/npm-package-arg/-/npm-package-arg-9.0.2.tgz#f3ef7b1b3b02e82564af2d5228b4c36567dcd389"
-  integrity sha512-v/miORuX8cndiOheW8p2moNuPJ7QhcFh9WGlTorruG8hXSA23vMTEp5hTCmDxic0nD8KHhj/NQgFuySD3GYY3g==
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/npm-package-arg/-/npm-package-arg-9.1.0.tgz#a60e9f1e7c03e4e3e4e994ea87fff8b90b522987"
+  integrity sha512-4J0GL+u2Nh6OnhvUKXRr2ZMG4lR8qtLp+kv7UiV00Y+nGiSxtttCyIRHCt5L5BNkXQld/RceYItau3MDOoGiBw==
   dependencies:
     hosted-git-info "^5.0.0"
+    proc-log "^2.0.1"
     semver "^7.3.5"
     validate-npm-package-name "^4.0.0"
 
@@ -4809,7 +4810,7 @@ pretty-format@^27.5.1:
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
 
-proc-log@^2.0.0:
+proc-log@^2.0.0, proc-log@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/proc-log/-/proc-log-2.0.1.tgz#8f3f69a1f608de27878f91f5c688b225391cb685"
   integrity sha512-Kcmo2FhfDTXdcbfDH76N7uBYHINxc/8GW7UAVuVP9I+Va3uHSerrnKV6dLooga/gh7GlgzuCCr/eoldnL1muGw==

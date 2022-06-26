@@ -284,10 +284,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cdk8s/projen-common@^0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.14.tgz#b42611ac134de40d70be723c5ef4e2d2419dd35e"
-  integrity sha512-TULP3YagF24nsMOU+UT1tIJPlCaj+H1HTuef5ttjcBoenPw1SBIqDt7VSw7f3jsqKKmwiTr9GXt9h4MKzbzLNQ==
+"@cdk8s/projen-common@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.15.tgz#2e8fe69de8615bc61e4d0fbd0c70c1dcb1489116"
+  integrity sha512-baF5DaRnBzhXpIhY2Je+p7vfGK57zG/bCrVI8GyKdVyxeHtM+8NGCliPdynjZ7192hnScdFVHAmZTkiOLtl58w==
 
 "@eslint/eslintrc@^1.3.0":
   version "1.3.0"
@@ -1389,10 +1389,10 @@ case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk8s@1.6.36:
-  version "1.6.36"
-  resolved "https://registry.yarnpkg.com/cdk8s/-/cdk8s-1.6.36.tgz#275493572c26afb7a410b16557433f4b528dc031"
-  integrity sha512-5rbsLQeu0EZ35iOd35wI1YlRX3S7R0Yod8B9FxBAQz2d7yGkjo84trLSSdjNRJ7QJNwpdHWXXhpEK6Nnu9TjZg==
+cdk8s@1.6.37:
+  version "1.6.37"
+  resolved "https://registry.yarnpkg.com/cdk8s/-/cdk8s-1.6.37.tgz#64f5fe485f345ca056f2c27ec510b7881a63574b"
+  integrity sha512-GHWdwr9EIyesaTIGqOhg+Cpyir2PUsFnSPRqFew+zfpdwh+WZ8bStKlbwiSb4EhRuJ937F9ZknqyDf8Y8BKanw==
   dependencies:
     fast-json-patch "^3.1.1"
     follow-redirects "^1.15.1"
@@ -4488,9 +4488,9 @@ npmlog@^6.0.0:
     set-blocking "^2.0.0"
 
 nwsapi@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.0.tgz#204879a9e3d068ff2a55139c2c772780681a38b7"
-  integrity sha512-h2AatdwYH+JHiZpv7pt/gSX1XoRGb7L/qSIeuqA6GwYoF9w1vP1cw42TO0aI2pNyshRK5893hNSl+1//vHK7hQ==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.1.tgz#10a9f268fbf4c461249ebcfe38e359aa36e2577c"
+  integrity sha512-JYOWTeFoS0Z93587vRJgASD5Ut11fYl5NyihP3KrYBvMe1FRRs6RN7m20SA/16GM4P6hTnZjT+UmDOt38UeXNg==
 
 object-inspect@^1.12.0, object-inspect@^1.9.0:
   version "1.12.2"

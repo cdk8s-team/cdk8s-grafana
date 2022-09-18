@@ -290,10 +290,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cdk8s/projen-common@^0.0.90":
-  version "0.0.90"
-  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.90.tgz#6f0749b321a0cf4f8777b219dbc497ad29b8223d"
-  integrity sha512-z39yZ8jZjYSrKW0N9AR4qPalpwPWNtq2KdKdhogmbdGa0IEWCdD/gt+W15e6kLXKDDSLmKYnjK0o3zUC5DOp9A==
+"@cdk8s/projen-common@^0.0.91":
+  version "0.0.91"
+  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.91.tgz#e3da02069d1adcfa5e492f39ae10a1fbfad125b1"
+  integrity sha512-srLyNv3fl8MAnQTdhUnvo5O1LZnyNdZemePeKPrmuGudvURdLeztrIyxu03ePaZy7GglLmwSlcJ1jnSJ8PrQbw==
 
 "@eslint/eslintrc@^1.3.2":
   version "1.3.2"
@@ -1453,10 +1453,10 @@ case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk8s@2.4.30:
-  version "2.4.30"
-  resolved "https://registry.yarnpkg.com/cdk8s/-/cdk8s-2.4.30.tgz#bd91fa1a63654a78a8ae3d4ac5dcb76b7664ccbb"
-  integrity sha512-wVXBejPqUn7QwmFukoYDbBbkFptC5FfapyQ1aJa/obpvFXjYgZrqf1kviC93YohazVu6qucsKwtjlbMlpBYIHw==
+cdk8s@2.4.31:
+  version "2.4.31"
+  resolved "https://registry.yarnpkg.com/cdk8s/-/cdk8s-2.4.31.tgz#20381c853e998fcd3ccac87f9997be0daabf3fcc"
+  integrity sha512-9e2woEAlHoVkTCXhet69vfReOrr5ocjEWv8+bCDnXkdLwuE8u/weyDo8jQMu5krYBSU4n2LzSAilvkBxaIyW2w==
   dependencies:
     fast-json-patch "^3.1.1"
     follow-redirects "^1.15.2"
@@ -1664,10 +1664,10 @@ console-control-strings@^1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==
 
-constructs@10.1.105:
-  version "10.1.105"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.1.105.tgz#129993c3cb52a6a733b4aaf5c9cc9879477d4323"
-  integrity sha512-tfG91781Z1MVgfDm1CkfOVljmBfIpqZu5+F5QdmNQbarLaGmHO4ZNRqUTtKWFVt2u3ZZnNxT/Ksg1uqG98YEFA==
+constructs@10.1.106:
+  version "10.1.106"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.1.106.tgz#656f04aa747cc6f7ce880be5fbb90ea1b42e7e4a"
+  integrity sha512-xcNB+/5jKk7+9w4pXe5jThpUEDDbhtWLeXlhy9GVdFa/tuasOVEiowZOZMjPvcXrujGgSkVleebo6ZNzvYyZug==
 
 conventional-changelog-angular@^5.0.12:
   version "5.0.13"

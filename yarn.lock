@@ -291,10 +291,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cdk8s/projen-common@^0.0.200":
-  version "0.0.200"
-  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.200.tgz#f63f83b025001ceafdf8796619c6387d0b0a3357"
-  integrity sha512-XCclFza61Ka7Ls/GvDsXkr3RCn+/o59sdWe1y43pkgUA6swCpJ9B7fviUi+GWR8QMslkYANuCVb252yp+biVZw==
+"@cdk8s/projen-common@^0.0.201":
+  version "0.0.201"
+  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.201.tgz#384b9a1af322b6a108647c8ddf6054f26cd807e3"
+  integrity sha512-niaDQPgHqWImb8xu0mXUyNl2pGU6Q46enkEqtDynFwaZMaezaHQ3u0ktpVH86g7gadeWG2VSWPQ65N6ngI+NlA==
 
 "@eslint/eslintrc@^1.4.1":
   version "1.4.1"
@@ -1468,10 +1468,10 @@ case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk8s@2.6.11:
-  version "2.6.11"
-  resolved "https://registry.yarnpkg.com/cdk8s/-/cdk8s-2.6.11.tgz#e4e67903fecbb2d9fff67e8424633e8e2e0a7301"
-  integrity sha512-9Aq3EVdAuYNB2GZ7FtRh8ZCLEpj1BZwPg/a4mwr2HFHtYASEun3vPKM719o2+K2E+XKZZ19D7gmLchusauBtQw==
+cdk8s@2.6.12:
+  version "2.6.12"
+  resolved "https://registry.yarnpkg.com/cdk8s/-/cdk8s-2.6.12.tgz#7d232df1f1d273261ba1550c28bdd55793a0a61b"
+  integrity sha512-ZY8Ua2lixoIlMOH60LVgTC4a1Y1zz2jkH8g/ZBvaq9FEJo8soRsk4TlC3i6aErbnWJZIMOzbf+K2O/PxEkdg7Q==
   dependencies:
     fast-json-patch "^3.1.1"
     follow-redirects "^1.15.2"
@@ -1611,9 +1611,9 @@ combined-stream@^1.0.8:
     delayed-stream "~1.0.0"
 
 commander@^9.4.1:
-  version "9.4.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
-  integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
+  integrity sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==
 
 comment-json@4.2.2:
   version "4.2.2"
@@ -1683,10 +1683,10 @@ console-control-strings@^1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==
 
-constructs@10.1.212:
-  version "10.1.212"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.1.212.tgz#c1eb6b424b0b29b5582359ef24c64363b38cdf84"
-  integrity sha512-75KvfIzTnSQr6kt2pmin/TmtazN5XgGzm6mFVG18+3TTWWL9TwtzPqJLbW2TQo4o1BMf4YkzI8Ka7tIPHsr+3w==
+constructs@10.1.213:
+  version "10.1.213"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.1.213.tgz#f5010eb358a82dc2c2c42d53ee69dab326a2762f"
+  integrity sha512-fRaHhYWLfLgGEDY8esJ2Y18FHKFqSWfcCBSSTanAFEHfO5pF4iPhnCBPl19MQ/I6IY1Uj2LnNpNH17RUAfxKRA==
 
 conventional-changelog-angular@^5.0.12:
   version "5.0.13"
@@ -5030,10 +5030,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.66.7:
-  version "0.66.7"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.66.7.tgz#3f9d03443406d02ab274735b1fa79bd100d91294"
-  integrity sha512-y/f69J7FAXuIxqFEzVKuORFwSvQLGiuxqQ6qF9nLUfg5RvNpI/ppARZeaOnkPgFZtWY6iHFBcwfU186Is65oXQ==
+projen@^0.66.8:
+  version "0.66.8"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.66.8.tgz#d1955f396ea73323e3749df6b4940faeb2ebb79f"
+  integrity sha512-IZdcuvvuWbgggQlRcno3pyPcY6/zcWohv+msVlru60iDsyC5X1uJLmzEh5mij+qyuqqEXwr14ClIItSx2MFhrQ==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"

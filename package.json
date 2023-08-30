@@ -42,7 +42,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdk8s/projen-common": "^0.0.451",
+    "@cdk8s/projen-common": "^0.0.454",
     "@types/jest": "^27",
     "@types/node": "^16",
     "@typescript-eslint/eslint-plugin": "^6",
@@ -72,7 +72,8 @@
   },
   "resolutions": {
     "@types/babel__traverse": "7.18.2",
-    "@types/prettier": "2.6.0"
+    "@types/prettier": "2.6.0",
+    "**/downlevel-dts/**/typescript": "~5.2.2"
   },
   "keywords": [
     "cdk8s",

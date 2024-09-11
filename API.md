@@ -62,14 +62,14 @@ Returns a string representation of this construct.
 ##### `addPlugins` <a name="addPlugins" id="cdk8s-grafana.Dashboard.addPlugins"></a>
 
 ```typescript
-public addPlugins(plugins: GrafanaPlugin): void
+public addPlugins(plugins: ...GrafanaPlugin[]): void
 ```
 
 Adds one or more plugins.
 
 ###### `plugins`<sup>Required</sup> <a name="plugins" id="cdk8s-grafana.Dashboard.addPlugins.parameter.plugins"></a>
 
-- *Type:* <a href="#cdk8s-grafana.GrafanaPlugin">GrafanaPlugin</a>
+- *Type:* ...<a href="#cdk8s-grafana.GrafanaPlugin">GrafanaPlugin</a>[]
 
 ---
 

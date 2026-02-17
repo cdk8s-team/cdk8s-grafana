@@ -47,6 +47,7 @@ new Dashboard(scope: Construct, id: string, props: DashboardProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s-grafana.Dashboard.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s-grafana.Dashboard.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#cdk8s-grafana.Dashboard.addPlugins">addPlugins</a></code> | Adds one or more plugins. |
 
 ---
@@ -58,6 +59,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk8s-grafana.Dashboard.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk8s-grafana.Dashboard.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addPlugins` <a name="addPlugins" id="cdk8s-grafana.Dashboard.addPlugins"></a>
 
@@ -179,6 +201,7 @@ new DataSource(scope: Construct, id: string, props: DataSourceProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s-grafana.DataSource.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s-grafana.DataSource.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -189,6 +212,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk8s-grafana.DataSource.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk8s-grafana.DataSource.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
@@ -307,6 +351,7 @@ new Grafana(scope: Construct, id: string, props?: GrafanaProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s-grafana.Grafana.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s-grafana.Grafana.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#cdk8s-grafana.Grafana.addDashboard">addDashboard</a></code> | Creates a dashboard associated with a particular data source. |
 | <code><a href="#cdk8s-grafana.Grafana.addDataSource">addDataSource</a></code> | Adds a data source. |
 
@@ -319,6 +364,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk8s-grafana.Grafana.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk8s-grafana.Grafana.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addDashboard` <a name="addDashboard" id="cdk8s-grafana.Grafana.addDashboard"></a>
 

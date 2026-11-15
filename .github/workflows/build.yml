@@ -7,7 +7,7 @@ on:
   merge_group: {}
 jobs:
   build:
-    runs-on: cncf-c-ubuntu-26.04-4-16-x86
+    runs-on: cncf-c-ubuntu-8-32-x86
     permissions:
       contents: write
     outputs:

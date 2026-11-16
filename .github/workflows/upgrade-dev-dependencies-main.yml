@@ -25,6 +25,8 @@ jobs:
         with:
           node-version: lts/*
           package-manager-cache: false
+      - name: Install yarn v1
+        run: npm install -g yarn@1
       - name: Install dependencies
         id: install_dependencies
         run: yarn install --check-files --frozen-lockfile

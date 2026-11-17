@@ -22,7 +22,7 @@ const project = new Cdk8sTeamJsiiProject({
 });
 
 // Run the build job on the CNCF hosted runner.
-project.github.tryFindWorkflow('build').file.addOverride('jobs.build.runs-on', 'cncf-c-ubuntu-8-32-x86');
+project.github.tryFindWorkflow('build').file.addOverride('jobs.build.runs-on', 'cncf-c-ubuntu-26.04-8-32-x86');
 
 // In every workflow job: pin node 24 and install yarn v1 right after node is set up.
 // Implemented as a component so it runs after all workflows/jobs are registered.

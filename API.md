@@ -4,6 +4,8 @@
 
 ### Dashboard <a name="Dashboard" id="cdk8s-grafana.Dashboard"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 A Grafana dashboard.
 
 > [https://grafana.com/docs/grafana/latest/http_api/dashboard/](https://grafana.com/docs/grafana/latest/http_api/dashboard/)
@@ -158,6 +160,8 @@ The tree node.
 
 ### DataSource <a name="DataSource" id="cdk8s-grafana.DataSource"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 A Grafana data source.
 
 > [https://grafana.com/docs/grafana/latest/administration/provisioning/#example-data-source-config-file](https://grafana.com/docs/grafana/latest/administration/provisioning/#example-data-source-config-file)
@@ -309,6 +313,8 @@ Name of the data source.
 
 
 ### Grafana <a name="Grafana" id="cdk8s-grafana.Grafana"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable
 
 A Grafana instance.
 

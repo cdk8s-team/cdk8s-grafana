@@ -1,5 +1,5 @@
-const { Component } = require('projen');
 const { Cdk8sTeamJsiiProject } = require('@cdk8s/projen-common');
+const { Component } = require('projen');
 
 const project = new Cdk8sTeamJsiiProject({
   name: 'cdk8s-grafana',
